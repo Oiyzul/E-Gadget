@@ -1,8 +1,11 @@
+import { Types } from "mongoose";
+
 type TChildren = {
   children: React.ReactNode;
 };
 
 type TProduct = {
+  _id: Types.ObjectId;
   title: string;
   brand: string;
   model: string;
@@ -17,4 +20,13 @@ type TProduct = {
   variants: string;
   isFlashSale: boolean;
   isFeatured: boolean;
+};
+
+type TQuery = {
+  q: string;
+  category: string;
+  sort: string;
+  price: string;
+  rating: string;
+  page: string;
 };

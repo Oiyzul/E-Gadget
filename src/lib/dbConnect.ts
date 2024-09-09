@@ -8,3 +8,5 @@ async function dbConnect() {
     throw new Error("Could not connect to MongoDB!");
   }
 }
+
+export default dbConnect;
