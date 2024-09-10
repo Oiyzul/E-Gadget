@@ -1,6 +1,6 @@
 import { cache } from "react";
 import dbConnect from "../dbConnect";
-import Product from "../models/ProductModel";
+import Product from "../models/productModel";
 import { TProduct, TQuery } from "../../../types";
 
 export const revalidate = 3600;
@@ -9,8 +9,8 @@ const getFeatured = cache(async () => {
   await dbConnect();
   const featuredProducts = await Product.find({ isFeatured: true })
     .limit(6)
-    .lean();
-  return featuredProducts;
+    // .lean(); 
+  return featuredProducts as TProduct[];
 });
 
 const getLatest = cache(async () => {
@@ -19,7 +19,7 @@ const getLatest = cache(async () => {
     .sort({ _id: -1 })
     .limit(6)
     .lean();
-  return latestProducts;
+  return latestProducts as TProduct[];
 });
 
 const getById = cache(async (id: string) => {

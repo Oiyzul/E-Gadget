@@ -1,4 +1,5 @@
 import { model, models, Schema } from "mongoose";
+import { TProduct } from "../../../types";
 
 const productSchema = new Schema<TProduct>(
   {
@@ -20,6 +21,6 @@ const productSchema = new Schema<TProduct>(
   { timestamps: true }
 );
 
-const Product = model("Product", productSchema) || models.Product;
+const Product = models.Product || model("Product", productSchema);
 
 export default Product;
