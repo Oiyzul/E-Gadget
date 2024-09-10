@@ -11,7 +11,7 @@ const productSchema = new Schema<TProduct>(
     description: { type: String, required: true },
     features: { type: [String], required: true },
     images: { type: [String], required: true },
-    ratings: { type: Number },
+    rating: { type: Number },
     numReviews: { type: Number },
     countInStock: { type: Number, required: true },
     variants: { type: String },

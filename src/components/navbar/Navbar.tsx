@@ -10,7 +10,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   return (
-    <nav>
+    <nav className={cn('h-16 flex flex-col items-center justify-center')}>
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <div className="flex-1">

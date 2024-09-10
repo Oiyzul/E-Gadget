@@ -5,11 +5,19 @@ import { TProduct, TQuery } from "../../../types";
 
 export const revalidate = 3600;
 
+const getFlashSales = cache(async () => {
+  await dbConnect();
+  const flashSaleProducts = await Product.find({ isFlashSale: true })
+    .limit(6)
+    .lean();
+  return flashSaleProducts as TProduct[];
+});
+
 const getFeatured = cache(async () => {
   await dbConnect();
   const featuredProducts = await Product.find({ isFeatured: true })
     .limit(6)
-    // .lean(); 
+    .lean();
   return featuredProducts as TProduct[];
 });
 
@@ -118,6 +126,7 @@ const getCategories = cache(async () => {
 });
 
 const ProductServices = {
+  getFlashSales,
   getFeatured,
   getLatest,
   getById,

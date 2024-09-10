@@ -7,10 +7,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
+import { motion as m } from "framer-motion";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import * as React from "react";
-import { motion as m } from "framer-motion";
 
 const textAnimations = {
   initial: { opacity: 0 },
@@ -32,49 +34,66 @@ const Banner = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: false })
   );
-
+  const { theme } = useTheme();
   return (
-    <div className="bg-black">
-      <Carousel
-        plugins={[plugin.current]}
-        className="max-w-screen-xl mx-auto"
-        // onMouseEnter={plugin.current.stop}
-        // onMouseLeave={plugin.current.reset}
-      >
-        <CarouselContent>
-          {carouselContents.map((item, index) => (
-            <CarouselItem
-              key={`banner-${index}`}
-              className="grid grid-cols-1 sm:grid-cols-2 relative"
-            >
-              <div className="p-1 col-span-1 w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] relative">
-                <Image src={item.image} alt="mobile" fill objectFit="cover" />
-              </div>
-              <m.div
-                className="sm:col-span-1 hidden sm:h-[400px] md:h-[450px] lg:h-[500px] sm:flex flex-col gap-5 justify-center px-[60px] py-2 md:p-[23px] lg:p-[51.6px]"
-                variants={textAnimations}
-                initial={"initial"}
-                animate={index === item.id - 1 && "visible"}
+    <div className="">
+      <div className="text-center py-10">
+        <h1 className=" text-4xl md:text-6xl font-semibold">
+          Welcome to E-Gadget
+        </h1>
+        <p className="text-sm md:text-xl lg:text-2xl text-gray-500 font-semibold">
+          Your one-stop shop for your phone.
+        </p>
+      </div>
+
+      <div className={cn(theme === 'light' ? 'bg-gray-900': 'bg-black')}>
+        <Carousel
+          plugins={[plugin.current]}
+          className="max-w-screen-xl mx-auto"
+          // onMouseEnter={plugin.current.stop}
+          // onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent>
+            {carouselContents.map((item, index) => (
+              <CarouselItem
+                key={`banner-${index}`}
+                className="grid grid-cols-1 sm:grid-cols-2 relative"
               >
-                <m.h1
-                  className="text-4xl font font-semibold md:text-5xl lg:text-7xl text-white"
-                  variants={carouselText}
+                <div className="p-1 col-span-1 w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] relative">
+                  <Image src={item.image} alt="mobile" fill objectFit="cover" />
+                </div>
+                <m.div
+                  className="sm:col-span-1 hidden sm:h-[400px] md:h-[450px] lg:h-[500px] sm:flex flex-col gap-5 justify-center px-[60px] py-2 md:p-[23px] lg:p-[51.6px]"
+                  variants={textAnimations}
+                  initial={"initial"}
+                  animate={index === item.id - 1 && "visible"}
                 >
-                  {item.title}
-                </m.h1>
-                <m.p className="text-3xl text-cyan-500" variants={carouselText}>
-                  {item.description}
-                </m.p>
-                <m.p className="text-3xl text-blue-500" variants={carouselText}>
-                  {item.price} BDT
-                </m.p>
-              </m.div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        {/* <CarouselPrevious />
+                  <m.h1
+                    className="text-4xl font font-semibold md:text-5xl lg:text-7xl text-white"
+                    variants={carouselText}
+                  >
+                    {item.title}
+                  </m.h1>
+                  <m.p
+                    className="text-3xl text-cyan-500"
+                    variants={carouselText}
+                  >
+                    {item.description}
+                  </m.p>
+                  <m.p
+                    className="text-3xl text-blue-500"
+                    variants={carouselText}
+                  >
+                    {item.price} BDT
+                  </m.p>
+                </m.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* <CarouselPrevious />
         <CarouselNext /> */}
-      </Carousel>
+        </Carousel>
+      </div>
     </div>
   );
 };

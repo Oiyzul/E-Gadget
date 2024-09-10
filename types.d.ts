@@ -14,7 +14,7 @@ type TProduct = {
   description: string;
   features: string[];
   images: string[];
-  ratings: number;
+  rating: number;
   numReviews: number;
   countInStock: number;
   variants: string;
@@ -23,6 +23,11 @@ type TProduct = {
   // createdAt: string;
   // updatedAt: string;
   // __v: number;
+};
+
+type TProductProps = {
+  product: TProduct;
+  key: string;
 };
 
 type TQuery = {

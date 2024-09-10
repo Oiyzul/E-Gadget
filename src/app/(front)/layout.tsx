@@ -6,7 +6,7 @@ const NoSSRNav = dynamic(() => import("../../components/navbar/Navbar"), {
 });
 export default function FrontLayout({ children }: TChildren) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <div className="flex-grow">
         <NoSSRNav />
         {children}
@@ -14,6 +14,6 @@ export default function FrontLayout({ children }: TChildren) {
       <div className="flex-shrink-0 p-2 bg-gray-500 text-white text-sm">
         Footer
       </div>
-    </div>
+    </>
   );
 }
