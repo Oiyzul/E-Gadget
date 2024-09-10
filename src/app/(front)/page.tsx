@@ -20,12 +20,12 @@ const HomePage = async () => {
       <MaxWidthWrapper className="">
         <section className="section">
           <div className="mb-10 flex justify-between">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-500">
+            <h1 className="text-4xl md:text-5xl font-bold">
               Flash Sale
             </h1>
             <Button
               asChild
-              className="bg-gray-900 rounded-full hover:bg-gray-950 px-5"
+              className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
             >
               <Link href="/flash-sale" className="flex gap-2">
                 View All <ArrowBigRight />

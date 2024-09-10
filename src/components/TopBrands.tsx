@@ -31,22 +31,19 @@ const topBrands = [
 
 const TopBrands = () => {
   return (
-    <div className="mt-20 flex flex-col items-center">
-      <div className="text-center my-10">
-        <h1 className="text4xl md:text-5xl text-gray-500 font-bold mb-2">
+    <div className="">
+      <div className="text-center mb-5">
+        <h1 className="text-4xl md:text-5xl font-bold mb-2">
           Top Brands
         </h1>
         <p className="">Choose from one of our top brands.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 bg-gray-200">
-        <div className="relative">
+      <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="my-auto relative">
           <Link href={topBrands[0].link}>
-            <Image
-              src={topBrands[0].image}
-              alt={topBrands[0].brand}
-              width={300}
-              height={400}
-            />
+            <div className="relative w-[370px] h-[370px]">
+              <Image src={topBrands[0].image} alt={topBrands[0].brand} fill />
+            </div>
           </Link>
           <p className="absolute -top-2 left-[30%] text-2xl font-semibold text-blue-800">
             {topBrands[0].brand}
@@ -56,52 +53,47 @@ const TopBrands = () => {
         <div className="">
           <div className="relative">
             <Link href={topBrands[1].link}>
-              <Image
-                src={topBrands[1].image}
-                alt={topBrands[1].brand}
-                fill
-              />
+              <div className="relative w-[300px] h-[270px] mx-auto">
+                <Image src={topBrands[1].image} alt={topBrands[1].brand} fill />
+              </div>
             </Link>
             <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-sky-800">
               {topBrands[1].brand}
             </p>
           </div>
           <div className="relative">
-            <Link href={topBrands[2].link}>
-              <Image
-                src={topBrands[2].image}
-                alt={topBrands[2].brand}
-                fill
-              />
+          <Link href={topBrands[2].link}>
+              <div className="relative w-[300px] h-[270px] mx-auto">
+                <Image src={topBrands[2].image} alt={topBrands[2].brand} fill />
+              </div>
             </Link>
             <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-cyan-700">
               {topBrands[2].brand}
             </p>
           </div>
         </div>
-        
-        <div className="relative">
+
+        <div className="my-auto relative">
           <Link href={topBrands[3].link}>
-            <Image
-              src={topBrands[3].image}
-              alt={topBrands[3].brand}
-              className=""
-              fill
-            />
+            <div className="relative w-[370px] h-[370px]">
+              <Image src={topBrands[3].image} alt={topBrands[3].brand} fill />
+            </div>
           </Link>
           <p className="absolute -top-4 left-[39%] text-2xl font-semibold text-blue-900">
             {topBrands[3].brand}
           </p>
         </div>
       </div>
-      <Button
-        asChild
-        className="mt-10 bg-gray-900 rounded-full hover:bg-gray-950 px-5"
-      >
-        <Link href="/products" className="flex gap-2">
-          View All <ArrowBigRight />
-        </Link>
-      </Button>
+      <div className="mx-auto w-full text-center">
+        <Button
+          asChild
+          className="mt-5 bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
+        >
+          <Link href="/products" className="flex gap-2">
+            View All <ArrowBigRight />
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 };
