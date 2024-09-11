@@ -1,5 +1,5 @@
 "use client";
-import { ArrowBigRight, ChevronRight } from "lucide-react";
+import { ArrowBigRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -33,16 +33,19 @@ const TopBrands = () => {
   return (
     <div className="">
       <div className="text-center mb-5">
-        <h1 className="text-4xl md:text-5xl font-bold mb-2">
-          Top Brands
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-gray-500 dark:text-white">Top Brands</h1>
         <p className="">Choose from one of our top brands.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        <div className="my-auto relative">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="my-auto relative shadow-xl hover:shadow-2xl">
           <Link href={topBrands[0].link}>
-            <div className="relative w-[370px] h-[370px]">
-              <Image src={topBrands[0].image} alt={topBrands[0].brand} fill />
+            <div className="relative w-[400px] h-[430px]">
+              <Image
+                src={topBrands[0].image}
+                alt={topBrands[0].brand}
+                fill
+                className="object-contain"
+              />
             </div>
           </Link>
           <p className="absolute -top-2 left-[30%] text-2xl font-semibold text-blue-800">
@@ -50,21 +53,31 @@ const TopBrands = () => {
           </p>
         </div>
 
-        <div className="">
-          <div className="relative">
+        <div className="flex flex-col gap-5">
+          <div className="relative shadow-xl hover:shadow-2xl">
             <Link href={topBrands[1].link}>
-              <div className="relative w-[300px] h-[270px] mx-auto">
-                <Image src={topBrands[1].image} alt={topBrands[1].brand} fill />
+              <div className="relative w-[400px] h-[210px] mx-auto">
+                <Image
+                  src={topBrands[1].image}
+                  alt={topBrands[1].brand}
+                  fill
+                  className="object-contain"
+                />
               </div>
             </Link>
             <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-sky-800">
               {topBrands[1].brand}
             </p>
           </div>
-          <div className="relative">
-          <Link href={topBrands[2].link}>
-              <div className="relative w-[300px] h-[270px] mx-auto">
-                <Image src={topBrands[2].image} alt={topBrands[2].brand} fill />
+          <div className="relative shadow-xl hover:shadow-2xl">
+            <Link href={topBrands[2].link}>
+              <div className="relative w-[400px] h-[210px] mx-auto">
+                <Image
+                  src={topBrands[2].image}
+                  alt={topBrands[2].brand}
+                  fill
+                  className="object-contain"
+                />
               </div>
             </Link>
             <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-cyan-700">
@@ -73,10 +86,15 @@ const TopBrands = () => {
           </div>
         </div>
 
-        <div className="my-auto relative">
+        <div className="my-auto relative shadow-xl hover:shadow-2xl">
           <Link href={topBrands[3].link}>
-            <div className="relative w-[370px] h-[370px]">
-              <Image src={topBrands[3].image} alt={topBrands[3].brand} fill />
+            <div className="relative w-[400px] h-[430px]">
+              <Image
+                src={topBrands[3].image}
+                alt={topBrands[3].brand}
+                fill
+                className="object-contain"
+              />
             </div>
           </Link>
           <p className="absolute -top-4 left-[39%] text-2xl font-semibold text-blue-900">
