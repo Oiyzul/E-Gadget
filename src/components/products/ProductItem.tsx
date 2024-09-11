@@ -33,7 +33,7 @@ const ProductItem = ({ product }: { product: TProduct }) => {
             <p className="text-white text-left">{feature}</p>
           ))}
           <Link href={`/products/${_id}`}>
-            <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300">
+            <button className="mt-4 bg-sky-500 text-white py-2 px-4 rounded hover:bg-sky-600 transition-colors duration-300">
               See More
             </button>
           </Link>

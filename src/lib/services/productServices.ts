@@ -32,8 +32,8 @@ const getLatest = cache(async () => {
 
 const getById = cache(async (id: string) => {
   await dbConnect();
-  const latestProducts = await Product.findById(id).lean();
-  return latestProducts;
+  const product = await Product.findById(id).lean();
+  return product as TProduct;
 });
 
 const getByQuery = cache(

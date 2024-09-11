@@ -1,4 +1,4 @@
-import { Banner, BrandNames, TopBrands } from "@/components";
+import { Banner, TopBrands } from "@/components";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import FlashSaleItem from "@/components/products/FlashSaleItem";
 import ProductItem from "@/components/products/ProductItem";
@@ -7,12 +7,13 @@ import { convertDocToObj } from "@/lib/utils";
 import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 import { TProduct } from "../../../types";
+import ProductServices from "@/lib/services/productServices";
 
 const HomePage = async () => {
-  // const flashSaleProducts = await ProductServices.getFlashSales() 
-  // const featuredProducts = await ProductServices.getFeatured() 
-  // const latestProducts = await ProductServices.getLatest()
- let flashSaleProducts, featuredProducts, latestProducts = []
+  const flashSaleProducts = await ProductServices.getFlashSales() 
+  const featuredProducts = await ProductServices.getFeatured() 
+  const latestProducts = await ProductServices.getLatest()
+//  let flashSaleProducts, featuredProducts, latestProducts = []
   return (
     <main>
       <Banner />
@@ -84,7 +85,7 @@ const HomePage = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
             {featuredProducts?.length > 1 &&
-              featutedProducts?.map((product: TProduct) => (
+              featuredProducts?.map((product: TProduct) => (
                 <ProductItem
                   key={`popular-${product._id}`}
                   product={convertDocToObj(product)}
@@ -93,7 +94,7 @@ const HomePage = async () => {
           </div>
         </section>
       </MaxWidthWrapper>
-      <BrandNames />
+      {/* <BrandNames /> */}
     </main>
   );
 };

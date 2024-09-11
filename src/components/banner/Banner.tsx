@@ -60,7 +60,7 @@ const Banner = () => {
                 className="grid grid-cols-1 sm:grid-cols-2 relative"
               >
                 <div className="p-1 col-span-1 w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] relative">
-                  <Image src={item.image} alt="mobile" fill objectFit="cover" />
+                  <Image src={item.image} alt="mobile" fill className="object-cover" />
                 </div>
                 <m.div
                   className="sm:col-span-1 hidden sm:h-[400px] md:h-[450px] lg:h-[500px] sm:flex flex-col gap-5 justify-center px-[60px] py-2 md:p-[23px] lg:p-[51.6px]"

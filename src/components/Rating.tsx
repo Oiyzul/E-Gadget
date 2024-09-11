@@ -13,7 +13,7 @@ const Rating = ({ rating, maxRating = 5 }: TProps) => {
       {[...Array(fullStars)].map((_, index) => (
         <svg
           key={index}
-          className="w-6 h-6 text-yellow-500"
+          className="w-5 h-5 text-yellow-500"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -23,7 +23,7 @@ const Rating = ({ rating, maxRating = 5 }: TProps) => {
       {halfStar && (
         <div className="relative">
           <svg
-            className="w-6 h-6 text-yellow-500"
+            className="w-5 h-5 text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -38,7 +38,7 @@ const Rating = ({ rating, maxRating = 5 }: TProps) => {
             />
           </svg>
           <svg
-            className="w-6 h-6 text-gray-300 absolute top-0 left-0"
+            className="w-5 h-5 text-gray-300 absolute top-0 left-0"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -49,7 +49,7 @@ const Rating = ({ rating, maxRating = 5 }: TProps) => {
       {[...Array(emptyStars)].map((_, index) => (
         <svg
           key={index}
-          className="w-6 h-6 text-gray-300"
+          className="w-5 h-5 text-gray-300"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
