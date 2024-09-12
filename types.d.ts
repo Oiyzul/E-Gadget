@@ -58,20 +58,33 @@ type TOrderItem = {
   discount: number;
 };
 
+type TCartItem = {
+  id?: string;
+  name: string;
+  image: string;
+  qty: number;
+  image: string;
+  price: number;
+  color: string;
+  variant: string;
+  discount: number;
+};
+
 type TCart = {
-  items: OrderItem[]
-  itemsPrice: number
-  taxPrice: number
-  shippingPrice: number
-  totalPrice: number
-  paymentMethod: string
-  shippingAddress: ShippingAddress
-}
+  items: OrderItem[];
+  totalQuantity: number;
+  itemsPrice: number;
+  taxPrice: number;
+  shippingPrice: number;
+  totalPrice: number;
+  paymentMethod: string;
+  shippingAddress: ShippingAddress;
+};
 
 type TShippingAddress = {
-  fullName: string
-  address: string
-  city: string
-  postalCode: string
-  country: string
-}
+  fullName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+};

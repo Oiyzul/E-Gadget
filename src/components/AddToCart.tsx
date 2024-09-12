@@ -8,7 +8,7 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useDispatch } from "react-redux";
-import { TOrderItem, TProduct } from "../../types";
+import { TCartItem, TOrderItem, TProduct } from "../../types";
 import { Minus, Plus } from "lucide-react";
 
 interface AddToCartProps {
@@ -17,16 +17,15 @@ interface AddToCartProps {
 
 const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
   const dispatch = useDispatch();
-  const cart = useAppSelector(selectCart);
-  const existedItem = cart.find(
-    (item: TOrderItem) => item.productId === product._id
+  const { items } = useAppSelector(selectCart);
+  const existedItem = items.find(
+    (item: TCartItem) => item.id === product._id
   );
 
   const newItem = {
-    productId: product._id,
+    id: product._id,
     name: product.title,
     price: product.price,
-    qty: 1,
     image: product.images[0],
     // color: product?.colors[0],
     variant: product.variants,
@@ -56,7 +55,12 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
       </button>
     </div>
   ) : (
-    <button className="bg-green-500 px-4 py-2 rounded-full text-white" onClick={handleAddToCart}>Add to Cart</button>
+    <button
+      className="bg-green-500 px-4 py-2 rounded-full text-white"
+      onClick={handleAddToCart}
+    >
+      Add to Cart
+    </button>
   );
 };
 

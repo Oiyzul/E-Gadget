@@ -8,14 +8,18 @@ import MaxWidthWrapper from "../MaxWidthWrapper";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks";
 import { selectCart } from "@/redux/features/cart/cartSlice";
+import CartModal from "../CartModal";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const cart = useAppSelector(selectCart);
-  console.log(cart);
+  const { items } = useAppSelector(selectCart);
+
   return (
-    <nav className={cn("h-16 flex flex-col items-center justify-center")}>
+    <nav
+      className={cn("h-16 flex flex-col items-center justify-center relative")}
+    >
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <div className="flex-1">
@@ -33,14 +37,19 @@ const Navbar = () => {
           </ul>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-3 lg:gap-5">
             <User />
-            <div className="relative cursor-pointer">
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setIsCartOpen((prev) => !prev)}
+            >
               <ShoppingBag />
               <div className="absolute -top-3 -right-2 bg-gray-900 p-2 rounded-full text-white w-6 h-6 flex items-center justify-center font-semibold">
-                <span>{cart.length}</span>
+                <span>{items.length}</span>
                 {/* {cart.reduce((a, c) => a + c.qty, 0)} */}
               </div>
             </div>
-
+            {isCartOpen ? (
+              <CartModal open={isCartOpen} setOpen={setIsCartOpen} />
+            ) : null}
             {theme ? (
               <div
                 className={cn(
