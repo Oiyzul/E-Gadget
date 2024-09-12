@@ -20,7 +20,7 @@ type TProduct = {
   variants: string;
   isFlashSale: boolean;
   isFeatured: boolean;
-  color: string[];
+  colors: string[];
   discount: number;
 };
 
@@ -48,13 +48,13 @@ type TUser = {
 };
 
 type TOrderItem = {
-  productId: string;
+  productId?: string;
   name: string;
   qty: number;
   image: string;
   price: number;
   color: string;
-  variants: string;
+  variant: string;
   discount: number;
 };
 

@@ -13,7 +13,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const cart = useAppSelector(selectCart);
-
+  console.log(cart);
   return (
     <nav className={cn("h-16 flex flex-col items-center justify-center")}>
       <MaxWidthWrapper>
@@ -37,6 +37,7 @@ const Navbar = () => {
               <ShoppingBag />
               <div className="absolute -top-3 -right-2 bg-gray-900 p-2 rounded-full text-white w-6 h-6 flex items-center justify-center font-semibold">
                 <span>{cart.length}</span>
+                {/* {cart.reduce((a, c) => a + c.qty, 0)} */}
               </div>
             </div>
 

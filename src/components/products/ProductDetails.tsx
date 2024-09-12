@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TProductProps } from "../../../types";
 import Image from "next/image";
 import { useState } from "react";
-import { div } from "framer-motion/client";
+import { TProductProps } from "../../../types";
+import AddToCart from "../AddToCart";
 import Rating from "../Rating";
 import { Separator } from "../ui/separator";
-import AddToCart from "../AddToCart";
 
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -93,8 +92,16 @@ const ProductDetails = ({ product }: TProductProps) => {
               </li>
             ))}
           </ul>
-          
-          <AddToCart product={product} />
+
+          {countInStock !== 0 ? (
+            <div>
+              <AddToCart product={product} />
+            </div>
+          ) : (
+            <div className="text-red-500 font-bold">
+              <p>Out of Stock</p>
+            </div>
+          )}
         </div>
       </div>
 

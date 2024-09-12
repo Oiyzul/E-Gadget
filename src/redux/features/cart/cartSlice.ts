@@ -1,4 +1,3 @@
-// redux/cartSlice.ts
 import { RootState } from "@/redux/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TCart, TOrderItem, TShippingAddress } from "../../../../types";
@@ -33,8 +32,9 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, qty: 1 });
       }
-      const { itemsPrice, shippingPrice, taxPrice, totalPrice } =
-        calcPrice(item);
+      const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(
+        state.items
+      );
       state.itemsPrice = itemsPrice;
       state.shippingPrice = shippingPrice;
       state.taxPrice = taxPrice;
@@ -45,11 +45,12 @@ const cartSlice = createSlice({
         (item: TOrderItem) => item.productId === action.payload.id
       );
       if (item) {
-        item.quantity += 1;
+        item.qty += 1;
       }
 
-      const { itemsPrice, shippingPrice, taxPrice, totalPrice } =
-        calcPrice(item);
+      const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(
+        state.items
+      );
       state.itemsPrice = itemsPrice;
       state.shippingPrice = shippingPrice;
       state.taxPrice = taxPrice;
@@ -59,12 +60,13 @@ const cartSlice = createSlice({
       const item = state.items.find(
         (item: TOrderItem) => item.productId === action.payload.id
       );
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
+      if (item && item.qty > 1) {
+        item.qty -= 1;
       }
 
-      const { itemsPrice, shippingPrice, taxPrice, totalPrice } =
-        calcPrice(item);
+      const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calcPrice(
+        state.items
+      );
       state.itemsPrice = itemsPrice;
       state.shippingPrice = shippingPrice;
       state.taxPrice = taxPrice;
