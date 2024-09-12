@@ -172,7 +172,7 @@ const ProductsPage = async ({
           </div>
         </div>
         <div className="md:col-span-4">
-          <div className="flex items-center justify-between  py-4">
+          <div className="flex items-center justify-between py-4">
             <div className="flex items-center">
               {products.length === 0 ? "No" : totalCount} Results
               {q !== "all" && q !== "" && " : " + q}
@@ -213,13 +213,13 @@ const ProductsPage = async ({
                 <ProductItem key={product._id} product={product} />
               ))}
             </div>
-            <div className="join">
+            <div className="mt-10">
               {products.length > 0 &&
                 Array.from(Array(totalPages).keys()).map((p) => (
                   <Link
                     key={p}
-                    className={`join-item btn ${
-                      Number(page) === p + 1 ? "btn-active" : ""
+                    className={`px-4 py-2  text-white rounded-lg ${
+                      Number(page) === p + 1 ? "bg-gray-500" : "bg-gray-600"
                     } `}
                     href={getFilterUrl({ pg: `${p + 1}` })}
                   >

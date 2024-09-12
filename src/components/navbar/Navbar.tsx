@@ -6,12 +6,16 @@ import { useTheme } from "next-themes";
 import { useState } from "react";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import Link from "next/link";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCart } from "@/redux/features/cart/cartSlice";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const cart = useAppSelector(selectCart);
+
   return (
-    <nav className={cn('h-16 flex flex-col items-center justify-center')}>
+    <nav className={cn("h-16 flex flex-col items-center justify-center")}>
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <div className="flex-1">
@@ -19,17 +23,23 @@ const Navbar = () => {
           </div>
           <ul className="hidden md:flex flex-1 items-center justify-between">
             <li>
-              <Link href='/'>Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href={'/products'}>Gadgets</Link>
-              </li>
+              <Link href={"/products"}>Gadgets</Link>
+            </li>
             <li>Contact Us</li>
             <li>Blog</li>
           </ul>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-3 lg:gap-5">
             <User />
-            <ShoppingBag />
+            <div className="relative cursor-pointer">
+              <ShoppingBag />
+              <div className="absolute -top-3 -right-2 bg-gray-900 p-2 rounded-full text-white w-6 h-6 flex items-center justify-center font-semibold">
+                <span>{cart.length}</span>
+              </div>
+            </div>
+
             {theme ? (
               <div
                 className={cn(

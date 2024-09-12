@@ -20,9 +20,8 @@ type TProduct = {
   variants: string;
   isFlashSale: boolean;
   isFeatured: boolean;
-  // createdAt: string;
-  // updatedAt: string;
-  // __v: number;
+  color: string[];
+  discount: number;
 };
 
 type TProductProps = {
@@ -47,3 +46,32 @@ type TUser = {
   imgUrl?: string;
   isAdmin: boolean;
 };
+
+type TOrderItem = {
+  productId: string;
+  name: string;
+  qty: number;
+  image: string;
+  price: number;
+  color: string;
+  variants: string;
+  discount: number;
+};
+
+type TCart = {
+  items: OrderItem[]
+  itemsPrice: number
+  taxPrice: number
+  shippingPrice: number
+  totalPrice: number
+  paymentMethod: string
+  shippingAddress: ShippingAddress
+}
+
+type TShippingAddress = {
+  fullName: string
+  address: string
+  city: string
+  postalCode: string
+  country: string
+}

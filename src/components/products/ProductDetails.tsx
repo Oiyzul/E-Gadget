@@ -7,6 +7,7 @@ import { useState } from "react";
 import { div } from "framer-motion/client";
 import Rating from "../Rating";
 import { Separator } from "../ui/separator";
+import AddToCart from "../AddToCart";
 
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -92,12 +93,8 @@ const ProductDetails = ({ product }: TProductProps) => {
               </li>
             ))}
           </ul>
-          <div>
-            <input type="text" name="" id="" />
-            <button className="bg-sky-500 text-white px-4 py-2 rounded-lg mb-4">
-              Add to Cart
-            </button>
-          </div>
+          
+          <AddToCart product={product} />
         </div>
       </div>
 
