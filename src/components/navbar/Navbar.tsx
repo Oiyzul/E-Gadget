@@ -5,6 +5,7 @@ import { Menu, Moon, ShoppingBag, Sun, User } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import MaxWidthWrapper from "../MaxWidthWrapper";
+import Link from "next/link";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -17,8 +18,12 @@ const Navbar = () => {
             <h1 className="text-2xl text-bold text-sky-500">E-Gadget</h1>
           </div>
           <ul className="hidden md:flex flex-1 items-center justify-between">
-            <li>Home</li>
-            <li>Categories</li>
+            <li>
+              <Link href='/'>Home</Link>
+            </li>
+            <li>
+              <Link href={'/products'}>Gadgets</Link>
+              </li>
             <li>Contact Us</li>
             <li>Blog</li>
           </ul>

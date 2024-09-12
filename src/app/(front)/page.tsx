@@ -47,7 +47,7 @@ const HomePage = async () => {
               asChild
               className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
             >
-              <Link href="/products" className="flex gap-2">
+              <Link href="/products?sort=newest" className="flex gap-2">
                 View All <ArrowBigRight />
               </Link>
             </Button>
@@ -77,7 +77,7 @@ const HomePage = async () => {
               asChild
               className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
             >
-              <Link href="/flash-sale" className="flex gap-2">
+              <Link href="/products?sort=rating" className="flex gap-2">
                 View All <ArrowBigRight />
               </Link>
             </Button>
