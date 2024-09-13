@@ -8,7 +8,7 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useDispatch } from "react-redux";
-import { TCartItem, TOrderItem, TProduct } from "../../types";
+import { TCartItem, TOrderItem, TProduct } from "../../../types";
 import { Minus, Plus } from "lucide-react";
 
 interface AddToCartProps {

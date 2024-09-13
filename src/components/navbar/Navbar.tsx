@@ -8,7 +8,7 @@ import MaxWidthWrapper from "../MaxWidthWrapper";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks";
 import { selectCart } from "@/redux/features/cart/cartSlice";
-import CartModal from "../CartModal";
+import CartModal from "../cart/CartModal";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

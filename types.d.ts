@@ -82,7 +82,9 @@ type TCart = {
 };
 
 type TShippingAddress = {
-  fullName: string;
+  customerName: string;
+  email: string;
+  phone: string;
   address: string;
   city: string;
   postalCode: string;

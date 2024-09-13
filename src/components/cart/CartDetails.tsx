@@ -1,5 +1,4 @@
 "use client";
-
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -7,41 +6,35 @@ import {
   selectCart,
 } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { motion } from "framer-motion";
 import { CircleX, Minus, Plus } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import taka from "@/assets/taka.svg";
+import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
-const animation = {
-  initial: { opacity: 0, x: 300 },
-  animate: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-};
-const CartModal = ({ open, setOpen }) => {
-  const { items, totalQuantity, totalPrice } = useAppSelector(selectCart);
+const CartDetails = ({ emptyValue }: { emptyValue: boolean }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  console.log(emptyValue);
+  const {
+    items,
+    itemsPrice,
+    totalPrice,
+    totalQuantity,
+    taxPrice,
+    shippingPrice,
+  } = useAppSelector(selectCart);
 
   return (
-    <motion.div
-      variants={animation}
-      initial="initial"
-      animate={open ? "animate" : ""}
-      exit="initial"
-      className="absolute top-12 right-0 h-[calc(100vh-50px)] w-[300px] bg-white dark:bg-black p-4 z-10 shadow-xl"
-    >
-      <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+    <>
+      <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
       {items.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <>
+          <p>Your cart is empty.</p>
+          <Link href={"/"}>Go Shopping</Link>
+        </>
       ) : (
-        <div className="flex flex-col justify-between h-full pb-10">
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col md:flex-row md:gap-10 lg:gap-20">
+          <div className="flex flex-grow flex-col gap-4">
             {items.map((item) => (
               <div
                 key={item.productId}
@@ -58,6 +51,7 @@ const CartModal = ({ open, setOpen }) => {
                 </div>
                 <div className="flex items-center justify-between">
                   <img src={item.image} alt="" className="w-20 h-16" />
+                  <p>{item.variant}</p>
                   <div className="border flex items-center rounded dark:border-white">
                     <button
                       onClick={() =>
@@ -94,25 +88,35 @@ const CartModal = ({ open, setOpen }) => {
             ))}
           </div>
 
-          <div className="mt-4">
-            <p className="text-lg font-semibold">
-              Total Quantity: {totalQuantity}
+          <div className="flex flex-col gap-2 border p-8 rounded-xl">
+            <p className="text-lg font-semibold text-gray-500">
+              Items Quantity: {totalQuantity}
+            </p>
+            <p className="text-lg font-semibold text-gray-500">
+              Items Price: {itemsPrice}
+            </p>
+            <p className="text-lg font-semibold text-gray-500">
+              Tax: {taxPrice}
+            </p>
+            <p className="text-lg font-semibold text-gray-500">
+              Shipping: {shippingPrice}
             </p>
             <p className="text-lg font-semibold mb-4">
               Total Price: {totalPrice} BDT
             </p>
 
-            <Button asChild className="mr-2" onClick={() => setOpen(false)}>
-              <Link href={"/checkout"}>Checkout</Link>
-            </Button>
-            <Button asChild variant={"outline"} onClick={() => setOpen(false)}>
-              <Link href={"/products"}>Shop More</Link>
+            <Button
+              className="bg-orange-500 hover:bg-orange-600"
+              onClick={() => router.push("/payment")}
+              disabled={emptyValue}
+            >
+              Proceed To Payment
             </Button>
           </div>
         </div>
       )}
-    </motion.div>
+    </>
   );
 };
 
-export default CartModal;
+export default CartDetails;

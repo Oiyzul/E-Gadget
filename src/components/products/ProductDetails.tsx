@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { TProductProps } from "../../../types";
-import AddToCart from "../AddToCart";
 import Rating from "../Rating";
 import { Separator } from "../ui/separator";
+import AddToCart from "../cart/AddToCart";
 
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);

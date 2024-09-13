@@ -17,7 +17,9 @@ const initialState: TCart = {
   totalPrice: 0,
   paymentMethod: "aamrpay",
   shippingAddress: {
-    fullName: "",
+    customerName: "",
+    email: "",
+    phone: "",
     address: "",
     postalCode: "",
     city: "",
