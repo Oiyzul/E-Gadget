@@ -8,13 +8,17 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { CircleX, Minus, Plus } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
-const CartDetails = ({ emptyValue }: { emptyValue: boolean }) => {
-  const router = useRouter();
+const CartDetails = ({
+  emptyValue,
+  handlePlaceOrder,
+}: {
+  emptyValue: boolean;
+  handlePlaceOrder: () => void;
+}) => {
   const dispatch = useAppDispatch();
-  console.log(emptyValue);
+
   const {
     items,
     itemsPrice,
@@ -107,10 +111,10 @@ const CartDetails = ({ emptyValue }: { emptyValue: boolean }) => {
 
             <Button
               className="bg-orange-500 hover:bg-orange-600"
-              onClick={() => router.push("/payment")}
               disabled={emptyValue}
+              onClick={handlePlaceOrder}
             >
-              Proceed To Payment
+              Place Order
             </Button>
           </div>
         </div>

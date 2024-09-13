@@ -28,7 +28,7 @@ const CheckoutForm = ({ emptyValue }: { emptyValue: boolean }) => {
     // console.log("Checkout data:", data);
   };
   const { isSubmitting, errors } = form.formState;
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <Form {...form}>

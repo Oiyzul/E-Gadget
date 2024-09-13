@@ -47,17 +47,6 @@ type TUser = {
   isAdmin: boolean;
 };
 
-type TOrderItem = {
-  productId?: string;
-  name: string;
-  qty: number;
-  image: string;
-  price: number;
-  color: string;
-  variant: string;
-  discount: number;
-};
-
 type TCartItem = {
   id?: string;
   name: string;
@@ -89,4 +78,33 @@ type TShippingAddress = {
   city: string;
   postalCode: string;
   country: string;
+};
+
+type TOrderItem = {
+  product?: string;
+  name: string;
+  qty: number;
+  image: string;
+  price: number;
+  color?: string;
+  variant: string;
+  discount: number;
+};
+
+type TOrder = {
+  _id?: Types.OrderId;
+  customer?: Types.ObjectId;
+  items: [TOrderItem];
+  shippingAddress: TShippingAddress;
+  paymentMethod?: string;
+  paymentResult?: { id: string; status: string; email_address: string };
+  itemsPrice: number;
+  shippingPrice: number;
+  taxPrice: number;
+  totalPrice: number;
+  isPaid: boolean;
+  isDelivered: boolean;
+  paidAt?: string;
+  deliveredAt?: string;
+  createdAt: string;
 };
