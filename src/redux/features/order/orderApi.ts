@@ -33,6 +33,25 @@ const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["orders"],
     }),
+
+    cancelOrder: builder.mutation({
+      query: (id) => ({
+        url: `/orders/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["orders"],
+    }),
+
+    payOrder: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/orders/${data.order}/pay`,
+          method: "POST",
+          body: { data },
+        };
+      },
+      invalidatesTags: ["orders"],
+    }),
   }),
 });
 
@@ -41,4 +60,6 @@ export const {
   useGetAllOrdersQuery,
   useGetSingleOrderQuery,
   useUpdateOrderMutation,
+  usePayOrderMutation,
+  useCancelOrderMutation,
 } = orderApi;

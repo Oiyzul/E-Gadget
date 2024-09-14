@@ -27,7 +27,7 @@ const Container = () => {
     console.log(res);
     if (res.success) {
       // dispatch(clearCart());
-      router.push("/place-order");
+      router.push(`/order/${res.order._id}`);
     }
   };
 
