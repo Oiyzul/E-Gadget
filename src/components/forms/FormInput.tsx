@@ -4,6 +4,7 @@ import {
   FormItem,
   FormMessage
 } from "../ui/form";
+import { Label } from "../ui/label";
 
 type TProps = {
   control: any;
@@ -40,8 +41,8 @@ const FormInput = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex items-center gap-2">
-          {label && <label className="min-w-fit">{label}</label>}
+        <FormItem className="mb-2">
+          {label && <Label className="min-w-fit">{label}</Label>}
           <FormControl>
             <input
               placeholder={placeholder}

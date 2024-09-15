@@ -1,20 +1,41 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Menu, Moon, ShoppingBag, Sun, User } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useState } from "react";
-import MaxWidthWrapper from "../MaxWidthWrapper";
-import Link from "next/link";
-import { useAppSelector } from "@/redux/hooks";
 import { selectCart } from "@/redux/features/cart/cartSlice";
+import { useAppSelector } from "@/redux/hooks";
+import {
+  LogIn,
+  LogOut,
+  Menu,
+  Moon,
+  ShoppingBag,
+  Sun,
+  User,
+  Users
+} from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useState } from "react";
 import CartModal from "../cart/CartModal";
+import MaxWidthWrapper from "../MaxWidthWrapper";
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "../ui/dropdown-menu";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { items } = useAppSelector(selectCart);
+  const { data: session } = useSession();
 
   return (
     <nav
@@ -36,7 +57,62 @@ const Navbar = () => {
             <li>Blog</li>
           </ul>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-3 lg:gap-5">
-            <User />
+            {session?.user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="border-none">
+                    <User />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <Link
+                        href={"/user/profile"}
+                        className="flex gap-4 items-center"
+                      >
+                        <User className="h-4 w-4" />
+                        <span>Profile</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link
+                        href={"/user/orders"}
+                        className="flex gap-4 items-center"
+                      >
+                        <ShoppingBag className=" h-4 w-4" />
+                        <span>Orders</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <Link href={"/user"} className="flex gap-4 items-center">
+                        <Users className="h-4 w-4" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => signOut({ callbackUrl: "/signin" })}
+                  >
+                    <LogOut className="mr-4 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href={"/signin"}>
+                <Button className="flex items-center justify-center">
+                  <LogIn className="mr-2 mt-1 w-4 h-4" />{" "}
+                  <span className="text-[16px]">Login</span>
+                </Button>
+              </Link>
+            )}
             <div
               className="relative cursor-pointer"
               onClick={() => setIsCartOpen((prev) => !prev)}

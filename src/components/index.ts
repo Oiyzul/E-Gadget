@@ -1,5 +1,5 @@
 import Navbar from "./navbar/Navbar";
-import ClientProviders from "../clientProviders";
+import ClientProviders from "../Providers";
 import Banner from "./banner/Banner";
 import Rating from "./Rating";
 import TopBrands from "./TopBrands";
