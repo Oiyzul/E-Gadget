@@ -40,6 +40,7 @@ export const config = {
         /\/checkout/,
         /\/order\/(.*)/,
         /\/profile/,
+        /\/user/,
         /\/admin/,
       ];
 

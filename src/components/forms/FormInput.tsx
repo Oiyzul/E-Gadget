@@ -4,6 +4,7 @@ import {
   FormItem,
   FormMessage
 } from "../ui/form";
+import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 type TProps = {
@@ -44,7 +45,7 @@ const FormInput = ({
         <FormItem className="mb-2">
           {label && <Label className="min-w-fit">{label}</Label>}
           <FormControl>
-            <input
+            <Input
               placeholder={placeholder}
               {...field}
               required={required}

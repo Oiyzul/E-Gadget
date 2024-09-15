@@ -11,7 +11,7 @@ import {
   ShoppingBag,
   Sun,
   User,
-  Users
+  Users,
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -27,7 +27,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
 const Navbar = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
             {session?.user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="border-none">
+                  <Button variant="outline" className="rounded-full px-2">
                     <User />
                   </Button>
                 </DropdownMenuTrigger>
@@ -78,21 +78,9 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link
-                        href={"/user/orders"}
-                        className="flex gap-4 items-center"
-                      >
+                      <Link href={"/user"} className="flex gap-4 items-center">
                         <ShoppingBag className=" h-4 w-4" />
                         <span>Orders</span>
-                      </Link>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <Link href={"/user"} className="flex gap-4 items-center">
-                        <Users className="h-4 w-4" />
-                        <span>Dashboard</span>
                       </Link>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
@@ -113,6 +101,7 @@ const Navbar = () => {
                 </Button>
               </Link>
             )}
+
             <div
               className="relative cursor-pointer"
               onClick={() => setIsCartOpen((prev) => !prev)}
@@ -126,6 +115,7 @@ const Navbar = () => {
             {isCartOpen ? (
               <CartModal open={isCartOpen} setOpen={setIsCartOpen} />
             ) : null}
+
             {theme ? (
               <div
                 className={cn(

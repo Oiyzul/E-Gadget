@@ -83,8 +83,11 @@ const SigninForm = () => {
               type="password"
               placeholder="Enter your password"
             />
-            <Button className="bg-sky-500 w-full hover:bg-sky-600 my-5">
-              {isSubmitting ? <span>Loading</span> : "Sign in"}
+            <Button
+              className="bg-sky-500 w-full hover:bg-sky-600 my-5"
+              disabled={isSubmitting}
+            >
+              Sign in
             </Button>
           </form>
         </Form>
