@@ -92,3 +92,21 @@ export const GET = async (request: NextRequest) => {
     { status: 200 }
   );
 };
+
+export const PUT = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams;
+  const id = searchParams.get("id");
+  const payload = await request.json();
+  console.log(id, payload)
+  await dbConnect();
+
+  const order = await Order.findByIdAndUpdate(id, payload);
+  return NextResponse.json(
+    {
+      success: true,
+      message: "Order updated successfully.",
+      data: order,
+    },
+    { status: 200 }
+  );
+};

@@ -23,18 +23,19 @@ const orderApi = baseApi.injectEndpoints({
         //change it my bookings
         url: `/orders/${id}`,
       }),
+      providesTags: ["orders"],
     }),
     getOrdersByUserId: builder.query({
       query: () => ({
-        url: '/orders/mine'
+        url: "/orders/mine",
       }),
       providesTags: ["orders"],
     }),
     updateOrder: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/orders/${id}`,
+        url: `/orders?id=${id}`,
         method: "PUT",
-        body: data,
+        body: data ,
       }),
       invalidatesTags: ["orders"],
     }),

@@ -11,11 +11,26 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllOrdersQuery } from "@/redux/features/order/orderApi";
+import {
+  useGetAllOrdersQuery,
+  useUpdateOrderMutation,
+} from "@/redux/features/order/orderApi";
 import { TOrder } from "../../../../types";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const OrdersTable = () => {
+  const [updateOrder] = useUpdateOrderMutation();
   const { data: { data: orders } = [], isLoading } = useGetAllOrdersQuery({});
+
+  const updateDeliveryStatus = async (id: string, status: boolean) => {
+    console.log(id, status);
+    const res = await updateOrder({
+      id: id,
+      data: { isDelivered: status },
+    }).unwrap();
+    console.log(res);
+  };
 
   if (isLoading) return <div>Loading...</div>;
   console.log(orders);
@@ -63,8 +78,17 @@ const OrdersTable = () => {
                 <TableCell>{order.shippingPrice}</TableCell>
                 <TableCell>{order.totalPrice}</TableCell>
                 <TableCell>{order.isPaid ? "Paid" : "Not paid"}</TableCell>
-                <TableCell>
-                  {order.isDelivered ? "Delivered" : "Pending"}
+                <TableCell className="flex items-center gap-2">
+                  <Switch
+                    id="isDeliverd"
+                    checked={order.isDelivered}
+                    onCheckedChange={() =>
+                      updateDeliveryStatus(order._id, !order.isDelivered)
+                    }
+                  />
+                  <Label htmlFor="isDeliverd">
+                    {order.isDelivered ? "Delivered" : "Pending"}
+                  </Label>
                 </TableCell>
               </TableRow>
             ))}
