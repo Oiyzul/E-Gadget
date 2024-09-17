@@ -10,7 +10,7 @@ import {
   Moon,
   ShoppingBag,
   Sun,
-  User
+  User,
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -45,15 +45,16 @@ const Navbar = () => {
           <div className="flex-1">
             <h1 className="text-2xl text-bold text-sky-500">E-Gadget</h1>
           </div>
-          <ul className="hidden md:flex flex-1 items-center justify-between">
+          <ul className="hidden md:flex flex-1 items-center justify-center gap-5">
             <li>
               <Link href="/">Home</Link>
             </li>
             <li>
               <Link href={"/products"}>Gadgets</Link>
             </li>
-            <li>Contact Us</li>
-            <li>Blog</li>
+            <li>
+              <Link href={"/flash-sale"}>Flash Sale</Link>
+            </li>
           </ul>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-3 lg:gap-5">
             {session?.user ? (
@@ -77,7 +78,10 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href={"/dashboard/my-orders"} className="flex gap-4 items-center">
+                      <Link
+                        href={"/dashboard/my-orders"}
+                        className="flex gap-4 items-center"
+                      >
                         <ShoppingBag className=" h-4 w-4" />
                         <span>My Orders</span>
                       </Link>
@@ -151,7 +155,7 @@ const Navbar = () => {
         </div>
 
         {open && (
-          <div className="bg-black ml-auto w-1/2 h-[100vh-100px] flex flex-col items-center text-white absolute top-12 right-0">
+          <div className="bg-black ml-auto w-1/2 h-[100vh] flex flex-col items-center text-white absolute top-12 right-0 z-50">
             <span
               className="ml-auto p-4 cursor-pointer"
               onClick={() => setOpen(false)}
@@ -159,12 +163,16 @@ const Navbar = () => {
               X
             </span>
             <ul className="flex-1 flex flex-col items-center gap-10 justify-center">
-              <li>Home</li>
-              <li>Categories</li>
-              <li>Contact Us</li>
-              <li>Blog</li>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href={"/products"}>Gadgets</Link>
+              </li>
+              <li>
+                <Link href={"/flash-sale"}>Flash Sale</Link>
+              </li>
             </ul>
-            <User />
           </div>
         )}
       </MaxWidthWrapper>

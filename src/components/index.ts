@@ -13,6 +13,7 @@ import CheckoutIndicator from "./CheckoutIndicator";
 import FormInput from "./forms/FormInput";
 import UploadImage from "./UploadImage";
 import Image from "./Image";
+import CountdownTimer from "./CountDownTimer";
 
 export {
   Navbar,
@@ -29,5 +30,6 @@ export {
   CheckoutIndicator,
   FormInput,
   UploadImage,
-  Image
+  Image,
+  CountdownTimer
 };
