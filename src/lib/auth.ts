@@ -39,13 +39,11 @@ export const config = {
       const protectedPaths = [
         /\/checkout/,
         /\/order\/(.*)/,
-        /\/profile/,
-        /\/user/,
-        /\/admin/,
+        /\/dashboard\/(.*)/
       ];
 
       const { pathname } = request.nextUrl;
-      if (protectedPaths.some((path) => path.test(pathname))) return !!auth;
+      if (protectedPaths.some((p) => p.test(pathname))) return !!auth;
       return true;
     },
     async jwt({ user, trigger, session, token }: any) {

@@ -1,8 +1,15 @@
 import OrderServices from "@/lib/services/orderServices";
 import OrderDetails from "./OrderDetails";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 const OrdersPage = async ({ params }: { params: { id: string } }) => {
+  const session = await auth();
+  if (!session || !session.user._id) {
+    return redirect("/unauthorized");
+  }
+
   const order = await OrderServices.getOrderById(params.id);
   return (
     <section className="min-h-screen">
