@@ -11,12 +11,12 @@ import AddToCart from "../cart/AddToCart";
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const {
-    title,
+    name,
     model,
     brand,
     description,
     price,
-    variants,
+    variant,
     features,
     images,
     rating,
@@ -37,7 +37,7 @@ const ProductDetails = ({ product }: TProductProps) => {
               >
                 <Image
                   src={image}
-                  alt={product.title}
+                  alt={product.name}
                   fill
                   className="rounded-lg object-cover"
                 />
@@ -52,7 +52,7 @@ const ProductDetails = ({ product }: TProductProps) => {
           >
             <Image
               src={selectedImage}
-              alt={product.title}
+              alt={product.name}
               fill
               className="rounded-lg object-contain"
             />
@@ -61,7 +61,7 @@ const ProductDetails = ({ product }: TProductProps) => {
 
         <div className="md:w-1/2 md:pl-8">
           <div>
-            <h1 className="text-3xl font-bold mb-3">{title}</h1>
+            <h1 className="text-3xl font-bold mb-3">{name}</h1>
             <div className="flex items-center h-5 space-x-4">
               <p className="text-xl font-semibold text-sky-500">{price} BDT</p>
               <Separator orientation="vertical" />
@@ -78,7 +78,7 @@ const ProductDetails = ({ product }: TProductProps) => {
               Model: {model}
             </p>
             <p className="text-lg text-gray-500 dark:text-white font-semibold">
-              Variant: {variants}
+              Variant: {variant}
             </p>
             <h3 className="text-xl text-gray-500 dark:text-white font-semibold">
               Main Features

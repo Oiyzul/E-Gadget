@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   const payload = await request.json();
   
-  const { order, shippingAddress, totalQuantity, totalPrice } = payload.data;
+  const { order, shippingAddress, totalPrice } = payload.data;
  
   const {
     customerName,
@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
       store_id: process.env.STORE_ID as string,
       signature_key: process.env.SIGNATURE_KEY as string,
       tran_id: transactionId,
-      success_url: `http://localhost:3000/api/payment/confirmation?orderId=${order}&transactionId=${transactionId}&status=success`,
-      fail_url: `http://localhost:3000/api/payment/confirmation?status=fail`,
-      cancel_url: `http://localhost:3000/order/${order}`,
+      success_url: `https://e-gadget-murex.vercel.app/api/payment/confirmation?orderId=${order}&transactionId=${transactionId}&status=success`,
+      fail_url: `https://e-gadget-murex.vercel.app/api/payment/confirmation?status=fail`,
+      cancel_url: `https://e-gadget-murex.vercel.app/order/${order}`,
       currency: "BDT",
       amount: totalPrice,
       cus_name: customerName,

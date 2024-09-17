@@ -3,10 +3,9 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Moon, PlusCircle, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
-import Link from "next/link";
 
 const DashboardNav = () => {
   const { data } = useSession();

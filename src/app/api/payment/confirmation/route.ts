@@ -12,9 +12,9 @@ export async function POST(requset: NextRequest) {
   // Verify the payment confirmation data
   const verifiedResponse = await verifyPayment(transactionId!);
   // console.log(verifiedResponse);
-  let result, message;
+  let message;
   if (verifiedResponse && verifiedResponse.pay_status === "Successful") {
-    result = await Order.findByIdAndUpdate(orderId, {
+  await Order.findByIdAndUpdate(orderId, {
       isPaid: true,
       paidAt: verifiedResponse.date,
     });

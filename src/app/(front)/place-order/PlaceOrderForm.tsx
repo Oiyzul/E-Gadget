@@ -9,7 +9,6 @@ const PlaceOrderForm = () => {
   const {
     items,
     itemsPrice,
-    totalQuantity,
     shippingAddress,
     shippingPrice,
     taxPrice,

@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import dbConnect from "./dbConnect";
 import User from "./models/userModel";
 
@@ -72,7 +72,7 @@ export const config = {
       return session;
     },
   },
-};
+} as NextAuthConfig
 
 export const {
   handlers: { GET, POST },

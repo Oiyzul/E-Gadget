@@ -15,17 +15,15 @@ import { useGetOrdersByUserIdQuery } from "@/redux/features/order/orderApi";
 import { useSession } from "next-auth/react";
 import { TOrder } from "../../../../../types";
 
-
 const OrdersTable = () => {
   const { data } = useSession();
-  if (!data) return null;
 
   const { data: { data: orders } = [], isLoading } = useGetOrdersByUserIdQuery(
-    data.user?._id as string
+    data?.user._id as string || ""
   );
-  console.log(data, orders)
+
   if (isLoading) return <div>Loading...</div>;
-  console.log(orders);
+
   return (
     <MaxWidthWrapper>
       <h1 className="text-2xl font-semibold mb-5">Your Orders</h1>

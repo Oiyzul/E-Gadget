@@ -22,7 +22,6 @@ const OrderDetails = ({ order }: { order: TOrder }) => {
     deliveredAt,
     paidAt,
     paymentMethod,
-    paymentResult,
   } = order;
 
   const router = useRouter();

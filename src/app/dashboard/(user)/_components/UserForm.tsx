@@ -18,20 +18,18 @@ const UserForm = () => {
   const [updateUser] = useUpdateUserMutation();
 
   const { data: session, update } = useSession();
-  if (!session) return null;
-  const { name, email } = session.user;
-  console.log(name, email);
+  
   const form = useForm<TInputs>({
     defaultValues: {
-      name: name,
-      email: email,
+      name: session?.user?.name as string,
+      email: session?.user?.email as string,
     },
   });
 
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = form;
 
   const onSubmit = async (data: TInputs) => {

@@ -25,10 +25,8 @@ const CheckoutForm = ({ emptyValue }: { emptyValue: boolean }) => {
 
   const onSubmit = async (data: TShippingAddress) => {
     dispath(saveShippingAddress(data));
-    // console.log("Checkout data:", data);
   };
-  const { isSubmitting, errors } = form.formState;
-  // console.log(errors);
+  
 
   return (
     <Form {...form}>

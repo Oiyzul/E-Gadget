@@ -7,8 +7,8 @@ import { Form } from "@/components/ui/form";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 type TInputs = {
   name: string;
@@ -17,11 +17,12 @@ type TInputs = {
 };
 
 const RegisterForm = () => {
+  const [error, setError] = useState("");
   const { data: session } = useSession();
 
   const router = useRouter();
   const params = useSearchParams();
-  let callbackUrl = params.get("callbackUrl") || "/";
+  const callbackUrl = params.get("callbackUrl") || "/";
 
   useEffect(() => {
     if (session && session.user) {
@@ -39,10 +40,11 @@ const RegisterForm = () => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = form;
 
-  const onSubmit = async (data: TInputs) => {
+  const onSubmit: SubmitHandler<TInputs> = async (data: TInputs) => {
+    setError("");
     try {
       const res = await fetch("api/auth/register", {
         method: "POST",
@@ -58,15 +60,15 @@ const RegisterForm = () => {
         );
       } else {
         const data = await res.json();
-        console.log(data);
+
         throw new Error(data.message);
       }
     } catch (err: any) {
-      console.error(err);
       const error =
         err.message && err.message.indexOf("E11000") === 0
           ? "Email already exists."
           : err.message;
+      setError(error);
     }
   };
   return (
@@ -102,6 +104,7 @@ const RegisterForm = () => {
             <Button className="bg-sky-500 w-full hover:bg-sky-600 my-5">
               {isSubmitting ? <span>Loading</span> : "Signup"}
             </Button>
+            {error && <p className="my-2 text-red-500">{error}</p>}
           </form>
         </Form>
 

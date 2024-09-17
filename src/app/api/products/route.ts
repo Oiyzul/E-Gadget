@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import Product from "@/lib/models/productModel";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   await dbConnect();
 
   const products = await Product.find({});
@@ -19,7 +19,7 @@ export const GET = async (request: NextRequest) => {
 
 export const POST = async (request: NextRequest) => {
   const payload = await request.json();
-  console.log(payload);
+  
   await dbConnect();
 
   const newProduct = await Product.create(payload.data);

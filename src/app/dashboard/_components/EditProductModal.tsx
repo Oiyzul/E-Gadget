@@ -17,7 +17,7 @@ const EditProductModal = ({ data, setOpen }: TProps) => {
     description,
     price,
     images,
-    variants,
+    variant,
     colors,
     category,
     countInStock,
@@ -39,7 +39,7 @@ const EditProductModal = ({ data, setOpen }: TProps) => {
       discount: discount || 0,
       isFeatured: isFeatured || false,
       isFlashSale: isFlashSale || false,
-      variants: variants || "",
+      variant: variant || "",
       countInStock: countInStock || 0,
     },
   });

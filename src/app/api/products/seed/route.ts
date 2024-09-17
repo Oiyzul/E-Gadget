@@ -1,23 +1,29 @@
-import { data } from "@/lib/data";
-import dbConnect from "@/lib/dbConnect";
-import Product from "@/lib/models/productModel";
-import User from "@/lib/models/userModel";
-import { NextRequest, NextResponse } from "next/server";
+// import { data } from "@/lib/data";
+// import dbConnect from "@/lib/dbConnect";
+// import Product from "@/lib/models/productModel";
+// import User from "@/lib/models/userModel";
+// import { NextResponse } from "next/server";
 
-export const GET = async (request: NextRequest) => {
-  const { users, products } = data;
+import { NextResponse } from "next/server"
 
-  await dbConnect();
+// export const GET = async () => {
+//   const { users, products } = data;
 
-  await User.deleteMany();
-  await User.insertMany(users);
+//   await dbConnect();
 
-  await Product.deleteMany();
-  await Product.insertMany(products);
+//   await User.deleteMany();
+//   await User.insertMany(users);
 
-  return NextResponse.json({
-    message: "Data imported successfully",
-    users,
-    products,
-  });
-};
+//   await Product.deleteMany();
+//   await Product.insertMany(products);
+
+//   return NextResponse.json({
+//     message: "Data imported successfully",
+//     users,
+//     products,
+//   });
+// };
+
+export const GET = async () => {
+  return new NextResponse(null)
+}

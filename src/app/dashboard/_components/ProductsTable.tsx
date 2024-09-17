@@ -32,13 +32,10 @@ import {
 import {
   useDeleteProductMutation,
   useGetAllProductsQuery,
-  useUpdateProductMutation,
 } from "@/redux/features/product/productApi";
 import { Plus, Trash } from "lucide-react";
 import { useState } from "react";
 import { TProduct } from "../../../../types";
-import ProductForm from "./ProductForm";
-import { useForm } from "react-hook-form";
 import EditProductModal from "./EditProductModal";
 
 const ProductsTable = () => {
@@ -88,9 +85,9 @@ const ProductsTable = () => {
               discount,
               colors,
             } = product;
-            console.log(colors)
+            console.log(colors);
             return (
-              <TableRow key={_id}>
+              <TableRow key={`product-${_id}`}>
                 <TableCell className="font-medium">{_id}</TableCell>
                 <TableCell>
                   <img src={images[0]} alt={name} width={50} height={50} />
@@ -101,7 +98,7 @@ const ProductsTable = () => {
                 <TableCell>{model}</TableCell>
                 <TableCell>
                   {colors?.map((c) => (
-                    <span>{c}</span>
+                    <span key={c}>{c}</span>
                   ))}
                 </TableCell>
                 <TableCell>{price}</TableCell>

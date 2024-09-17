@@ -1,6 +1,6 @@
 const uploadAuthenticator = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/auth/upload");
+    const response = await fetch("https://e-gadget-murex.vercel.app/api/auth/upload");
 
     if (!response.ok) {
       const errorText = await response.text();

@@ -24,12 +24,10 @@ const OrdersTable = () => {
   const { data: { data: orders } = [], isLoading } = useGetAllOrdersQuery({});
 
   const updateDeliveryStatus = async (id: string, status: boolean) => {
-    console.log(id, status);
-    const res = await updateOrder({
+    await updateOrder({
       id: id,
       data: { isDelivered: status },
     }).unwrap();
-    console.log(res);
   };
 
   if (isLoading) return <div>Loading...</div>;

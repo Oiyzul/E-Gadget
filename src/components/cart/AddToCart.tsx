@@ -7,9 +7,9 @@ import {
   selectCart,
 } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
-import { useDispatch } from "react-redux";
-import { TCartItem, TOrderItem, TProduct } from "../../../types";
 import { Minus, Plus } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { TCartItem, TProduct } from "../../../types";
 
 interface AddToCartProps {
   product: TProduct;
@@ -23,14 +23,14 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
   );
 
   const newItem = {
-    id: product._id,
-    name: product.title,
+    id: product._id as string,
+    name: product.name,
     price: product.price,
     image: product.images[0],
     // color: product?.colors[0],
-    variant: product.variants,
+    variant: product.variant,
     // discount: product?.discount,
-  };
+  } as TCartItem
 
   const handleAddToCart = () => {
     dispatch(addToCart(newItem));

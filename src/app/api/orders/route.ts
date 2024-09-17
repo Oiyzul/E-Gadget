@@ -20,7 +20,9 @@ export const POST = async (req: any) => {
     );
 
     const dbOrderItems = payload.items.map((x: { id: string }) => {
+      //@ts-ignore
       const { id, ...rest } = x;
+      console.log(id)
       return {
         ...rest,
         product: x.id,
@@ -78,7 +80,7 @@ const calcPrices = (orderItems: TOrderItem[]) => {
   return { itemsPrice, shippingPrice, taxPrice, totalPrice };
 };
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   await dbConnect();
 
   const orders = await Order.find();
@@ -97,7 +99,7 @@ export const PUT = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const id = searchParams.get("id");
   const payload = await request.json();
-  console.log(id, payload)
+  
   await dbConnect();
 
   const order = await Order.findByIdAndUpdate(id, payload);

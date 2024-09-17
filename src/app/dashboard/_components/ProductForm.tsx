@@ -111,7 +111,7 @@ const ProductForm = ({ form, onSubmit }: TProps) => {
             {fields.map((field, index) => (
               <FormField
                 control={form.control}
-                key={field.id}
+                key={`features-${index}`}
                 name={`features.${index}`}
                 render={({ field }) => (
                   <FormItem className="space-y-0 flex gap-2 flex-wrap">
@@ -166,7 +166,7 @@ const ProductForm = ({ form, onSubmit }: TProps) => {
             {colorFields.map((field, index) => (
               <FormField
                 control={form.control}
-                key={field.id}
+                key={`colors-${index}`}
                 name={`colors.${index}`}
                 render={({ field }) => (
                   <FormItem className="space-y-0 flex gap-2 flex-wrap">
@@ -233,7 +233,7 @@ const ProductForm = ({ form, onSubmit }: TProps) => {
             {imageFields.map((field, index) => (
               <FormField
                 control={form.control}
-                key={field.id}
+                key={`images-${index}`}
                 name={`images.${index}`}
                 render={({ field }) => (
                   <FormItem className="space-y-0 flex gap-2 flex-wrap">
@@ -279,7 +279,7 @@ const ProductForm = ({ form, onSubmit }: TProps) => {
           <div className="relative flex flex-wrap gap-2">
             {thumbnailUrls &&
               thumbnailUrls.map((img) => (
-                <div className="w-20 h-20">
+                <div className="w-20 h-20" key={img.substring(0, 10)}>
                   <img src={img} alt="Preview" className="w-full h-full" />
                 </div>
               ))}

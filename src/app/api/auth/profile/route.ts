@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { auth } from "@/lib/auth";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/lib/models/userModel";
+import bcrypt from "bcryptjs";
+import { NextResponse } from "next/server";
 
+//@ts-ignore
 export const PUT = auth(async (req: any) => {
   if (!req.auth) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

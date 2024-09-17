@@ -20,8 +20,7 @@ const SigninForm = () => {
 
   const router = useRouter();
   const params = useSearchParams();
-  let callbackUrl = params.get("callbackUrl") || "/";
-  console.log(callbackUrl);
+  const callbackUrl = params.get("callbackUrl") || "/";
 
   useEffect(() => {
     if (session && session.user) {
@@ -38,7 +37,7 @@ const SigninForm = () => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = form;
 
   const onSubmit = async (data: TInputs) => {

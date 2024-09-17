@@ -4,7 +4,7 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
 type TProps = {
-  control: any;
+  control: any,
   name: string;
   label?: string;
   placeholder: string;
@@ -35,7 +35,7 @@ const FormInput = ({
   label = "",
   required = true,
   textArea = false,
-  disabled= false
+  disabled = false,
 }: TProps) => {
   return (
     <FormField

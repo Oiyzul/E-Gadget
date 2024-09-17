@@ -10,8 +10,7 @@ import {
   Moon,
   ShoppingBag,
   Sun,
-  User,
-  Users,
+  User
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";

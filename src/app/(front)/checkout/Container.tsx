@@ -24,9 +24,9 @@ const Container = () => {
       shippingAddress,
     };
     const res = await placeOrder(newOrder).unwrap();
-    console.log(res);
+    
     if (res.success) {
-      // dispatch(clearCart());
+      dispatch(clearCart());
       router.push(`/order/${res.order._id}`);
     }
   };
