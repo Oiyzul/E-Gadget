@@ -3,11 +3,12 @@ import Product from "@/lib/models/productModel";
 import { round2 } from "@/lib/utils";
 import { TOrderItem } from "../../../../types";
 import Order from "@/lib/models/orderModel";
+import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: any) => {
   try {
     const payload = await req.json();
-    
+
     await dbConnect();
     const dbProductPrices = await Product.find(
       {
@@ -17,9 +18,9 @@ export const POST = async (req: any) => {
       },
       "price"
     );
-    
+
     const dbOrderItems = payload.items.map((x: { id: string }) => {
-      const {id, ...rest} = x
+      const { id, ...rest } = x;
       return {
         ...rest,
         product: x.id,
@@ -28,10 +29,10 @@ export const POST = async (req: any) => {
         )?.price,
       };
     });
-    
+
     const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
       calcPrices(dbOrderItems);
-    
+
     const newOrder = await Order.create({
       items: dbOrderItems,
       itemsPrice,
@@ -40,9 +41,9 @@ export const POST = async (req: any) => {
       totalPrice,
       paymentMethod: payload.paymentMethod,
       shippingAddress: payload.shippingAddress,
-      customer: dbOrderItems[0].product
+      customer: dbOrderItems[0].product,
     });
-    
+
     return Response.json(
       {
         success: true,
@@ -75,4 +76,19 @@ const calcPrices = (orderItems: TOrderItem[]) => {
   // Calculate the total price
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
   return { itemsPrice, shippingPrice, taxPrice, totalPrice };
+};
+
+export const GET = async (request: NextRequest) => {
+  await dbConnect();
+
+  const orders = await Order.find();
+
+  return NextResponse.json(
+    {
+      success: true,
+      message: "Orders retrieved successfully.",
+      data: orders,
+    },
+    { status: 200 }
+  );
 };

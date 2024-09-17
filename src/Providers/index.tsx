@@ -3,7 +3,7 @@ import AuthProvider from "./auth-provider";
 import StoreProvider from "./store-provider";
 import { ThemeProvider } from "./theme-provider";
 
-const ClientProviders = ({ children }: TChildren) => {
+const Providers = ({ children }: TChildren) => {
   return (
     <AuthProvider>
       <ThemeProvider>
@@ -13,4 +13,4 @@ const ClientProviders = ({ children }: TChildren) => {
   );
 };
 
-export default ClientProviders;
+export default Providers;

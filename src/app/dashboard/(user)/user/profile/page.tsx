@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import UserForm from "../_components/UserForm";
-import UserNav from "../_components/UserNav";
+import UserForm from "../../_components/UserForm";
+import UserNav from "../../_components/UserNav";
 
 const ProfilePage = () => {
   return (

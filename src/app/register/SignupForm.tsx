@@ -54,7 +54,7 @@ const RegisterForm = () => {
 
       if (res.ok) {
         return router.push(
-          `/signin?callbackUrl=${callbackUrl}&success=Account has been created successfully.`
+          `/login?callbackUrl=${callbackUrl}&success=Account has been created successfully.`
         );
       } else {
         const data = await res.json();
@@ -109,7 +109,7 @@ const RegisterForm = () => {
           Already have an account?
           <Link
             className="text-sky-500 font-semibold"
-            href={`/signin?callbackUrl=${callbackUrl}`}
+            href={`/login?callbackUrl=${callbackUrl}`}
           >
             Login
           </Link>

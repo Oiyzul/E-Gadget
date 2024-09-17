@@ -11,23 +11,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetOrdersByUserIdQuery } from "@/redux/features/order/orderApi";
-import { useSession } from "next-auth/react";
+import { useGetAllOrdersQuery } from "@/redux/features/order/orderApi";
 import { TOrder } from "../../../../types";
 
 const OrdersTable = () => {
-  const { data } = useSession();
-  if (!data) return null;
+  const { data: { data: orders } = [], isLoading } = useGetAllOrdersQuery({});
 
-  const { data: { data: orders } = [], isLoading } = useGetOrdersByUserIdQuery(
-    data.user?._id as string
-  );
-  console.log(data, orders)
   if (isLoading) return <div>Loading...</div>;
   console.log(orders);
   return (
     <MaxWidthWrapper>
-      <h1 className="text-2xl font-semibold mb-5">Your Orders</h1>
+      <h1 className="text-2xl font-semibold mb-5">All Orders</h1>
       <Table>
         <TableCaption>A list of your recent orders.</TableCaption>
         <TableHeader>
@@ -39,8 +33,8 @@ const OrdersTable = () => {
             <TableHead>Tax</TableHead>
             <TableHead>Shipping</TableHead>
             <TableHead>Total</TableHead>
-            <TableHead>Delivery</TableHead>
             <TableHead>Payment</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>
               <span className="sr-only">Actions</span>
             </TableHead>
@@ -68,11 +62,10 @@ const OrdersTable = () => {
                 <TableCell>{order.taxPrice}</TableCell>
                 <TableCell>{order.shippingPrice}</TableCell>
                 <TableCell>{order.totalPrice}</TableCell>
-                <TableCell>
-                  {order.isDelivered ? "Delivered" : "Not delivered"}
-                </TableCell>
                 <TableCell>{order.isPaid ? "Paid" : "Not paid"}</TableCell>
-                <TableCell>{order.isPaid ? "Thank you" : "Cancel"}</TableCell>
+                <TableCell>
+                  {order.isDelivered ? "Delivered" : "Pending"}
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>

@@ -6,7 +6,7 @@ type TChildren = {
 
 type TProduct = {
   _id?: string;
-  title: string;
+  name: string;
   brand: string;
   model: string;
   category: string;
@@ -17,7 +17,7 @@ type TProduct = {
   rating: number;
   numReviews: number;
   countInStock: number;
-  variants: string;
+  variant: string;
   isFlashSale: boolean;
   isFeatured: boolean;
   colors: string[];

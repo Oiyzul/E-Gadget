@@ -1,11 +1,7 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage
-} from "../ui/form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 
 type TProps = {
   control: any;
@@ -13,6 +9,7 @@ type TProps = {
   label?: string;
   placeholder: string;
   type?: string;
+  textArea?: boolean;
   errorMessage?: string;
   successMessage?: string;
   disabled?: boolean;
@@ -34,8 +31,11 @@ const FormInput = ({
   control,
   name,
   placeholder,
+  type = "text",
   label = "",
   required = true,
+  textArea = false,
+  disabled= false
 }: TProps) => {
   return (
     <FormField
@@ -45,12 +45,22 @@ const FormInput = ({
         <FormItem className="mb-2">
           {label && <Label className="min-w-fit">{label}</Label>}
           <FormControl>
-            <Input
-              placeholder={placeholder}
-              {...field}
-              required={required}
-              className="w-full outline-none border-b-2"
-            />
+            {!textArea ? (
+              <Input
+                placeholder={placeholder}
+                {...field}
+                required={required}
+                type={type}
+                disabled={disabled}
+                className="w-full outline-none border-b-2"
+              />
+            ) : (
+              <Textarea
+                className="w-full outline-none border-b-2"
+                placeholder={placeholder}
+                {...field}
+              />
+            )}
           </FormControl>
           <FormMessage />
         </FormItem>

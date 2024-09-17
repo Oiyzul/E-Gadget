@@ -8,17 +8,15 @@ import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
-const UserNav = () => {
+const DashboardNav = () => {
   const { data } = useSession();
   const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="h-20 flex items-center">
+    <nav className="h-20">
       <MaxWidthWrapper>
-        <div className="flex justify-between">
-          <Link href="/" className="font-semibold flex items-center">
-            Back to home
-          </Link>
+        <div className="flex justify-end">
+          
           <div className="flex items-center gap-10">
             <p className="font-semibold">{data?.user?.name}</p>
 
@@ -54,11 +52,6 @@ const UserNav = () => {
                 />
               </div>
             ) : null}
-            <Button asChild>
-              <Link href={'/user/profile'} className="flex items-center">
-              <PlusCircle /> Update Profile
-              </Link>
-            </Button>
           </div>
         </div>
       </MaxWidthWrapper>
@@ -66,4 +59,4 @@ const UserNav = () => {
   );
 };
 
-export default UserNav;
+export default DashboardNav;

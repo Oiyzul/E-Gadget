@@ -70,7 +70,7 @@ const Navbar = () => {
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       <Link
-                        href={"/user/profile"}
+                        href={"/dashboard/user/profile"}
                         className="flex gap-4 items-center"
                       >
                         <User className="h-4 w-4" />
@@ -78,15 +78,15 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href={"/user"} className="flex gap-4 items-center">
+                      <Link href={"/dashboard/my-orders"} className="flex gap-4 items-center">
                         <ShoppingBag className=" h-4 w-4" />
-                        <span>Orders</span>
+                        <span>My Orders</span>
                       </Link>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    onClick={() => signOut({ callbackUrl: "/signin" })}
+                    onClick={() => signOut({ callbackUrl: "/login" })}
                   >
                     <LogOut className="mr-4 h-4 w-4" />
                     <span>Log out</span>
@@ -94,7 +94,7 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link href={"/signin"}>
+              <Link href={"/login"}>
                 <Button className="flex items-center justify-center">
                   <LogIn className="mr-2 mt-1 w-4 h-4" />{" "}
                   <span className="text-[16px]">Login</span>

@@ -11,7 +11,7 @@ export const GET = auth(async (req: any) => {
   const { user } = req.auth;
   await dbConnect();
 
-  const orders = await Order.find({ customer: "66e4689ed15204bf70896c2a" });
+  const orders = await Order.find({ customer: user._id });
   
   return NextResponse.json(
     { success: true, message: "Orders retrieved successfully.", data: orders },

@@ -1,5 +1,5 @@
 import Navbar from "./navbar/Navbar";
-import ClientProviders from "../Providers";
+import Providers from "../Providers";
 import Banner from "./banner/Banner";
 import Rating from "./Rating";
 import TopBrands from "./TopBrands";
@@ -11,10 +11,12 @@ import CartDetails from "./cart/CartDetails";
 import CartModal from "./cart/CartModal";
 import CheckoutIndicator from "./CheckoutIndicator";
 import FormInput from "./forms/FormInput";
+import UploadImage from "./UploadImage";
+import Image from "./Image";
 
 export {
   Navbar,
-  ClientProviders as Providers,
+  Providers as Providers,
   Banner,
   Rating,
   TopBrands,
@@ -26,4 +28,6 @@ export {
   CartDetails,
   CheckoutIndicator,
   FormInput,
+  UploadImage,
+  Image
 };

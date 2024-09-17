@@ -30,9 +30,9 @@ export const config = {
     }),
   ],
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
     newUser: "/register",
-    error: "/signin",
+    error: "/login",
   },
   callbacks: {
     authorized({ request, auth }: any) {
