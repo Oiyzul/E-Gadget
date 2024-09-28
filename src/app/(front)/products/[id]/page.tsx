@@ -1,7 +1,8 @@
-import { ProductDetails } from "@/components";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Reviews from "@/components/review/Reviews";
 import ProductServices from "@/lib/services/productServices";
 import { convertDocToObj } from "@/lib/utils";
+import ProductDetails from "./ProductDetails";
 
 const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
   console.log(params.id);
@@ -13,7 +14,10 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
       {!product ? (
         <div className="">Loading...</div>
       ) : (
-        <ProductDetails key={`details-${product._id}`} product={convertDocToObj(product)} />
+        <ProductDetails
+          key={`details-${product._id}`}
+          product={convertDocToObj(product)}
+        />
       )}
     </MaxWidthWrapper>
   );

@@ -14,10 +14,11 @@ const HomePage = async () => {
   const featuredProducts = await ProductServices.getFeatured() 
   const latestProducts = await ProductServices.getLatest()
 //  let flashSaleProducts, featuredProducts, latestProducts = []
+
   return (
     <main>
       <Banner />
-      <MaxWidthWrapper className="mt-20">
+      <MaxWidthWrapper className="mt-20 mb-40">
         <section className="section">
           <div className="mb-10 flex justify-between">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">Flash Sale</h1>

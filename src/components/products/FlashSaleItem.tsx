@@ -5,7 +5,7 @@ import Rating from "../Rating";
 
 const FlashSaleItem = ({ product }: TProductProps) => {
   const { _id, name, images, features, rating, discount } = product;
-
+ 
   return (
     <div key={`flash-item-${_id}`} className="max-w-sm mx-auto">
       <div className="relative overflow-hidden rounded-lg shadow-lg group">

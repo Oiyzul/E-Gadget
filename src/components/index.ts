@@ -5,7 +5,7 @@ import Rating from "./Rating";
 import TopBrands from "./TopBrands";
 import BrandNames from "./BrandNames";
 import Footer from "./Footer";
-import ProductDetails from "./products/ProductDetails";
+import ProductDetails from "../app/(front)/products/[id]/ProductDetails";
 import AddToCart from "./cart/AddToCart";
 import CartDetails from "./cart/CartDetails";
 import CartModal from "./cart/CartModal";

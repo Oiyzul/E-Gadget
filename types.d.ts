@@ -109,3 +109,11 @@ type TOrder = {
   createdAt: string;
 };
 
+type TReview = {
+  _id?: Types.OrderId;
+  customer: Types.ObjectId;
+  customerName: string;
+  product: Types.ObjectId;
+  rating: number;
+  feedback: string;
+};

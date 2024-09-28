@@ -22,7 +22,7 @@ export const POST = async (request: NextRequest) => {
   
   await dbConnect();
 
-  const newProduct = await Product.create(payload.data);
+  const newProduct = await Product.create(payload);
 
   return NextResponse.json(
     {

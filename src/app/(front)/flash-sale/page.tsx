@@ -11,7 +11,7 @@ const FlashSalePage = async () => {
       <MaxWidthWrapper>
         <h2 className="text-3xl font-bold text-center mb-5">Flash Sales</h2>
         <div className="flex items-center justify-center mb-5">
-          <CountdownTimer targetDate="2024-09-18" targetTime="10:00" />
+          <CountdownTimer targetDate="2024-09-30" targetTime="10:00" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {products.length > 0 &&

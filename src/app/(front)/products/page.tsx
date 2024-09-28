@@ -213,13 +213,13 @@ const ProductsPage = async ({
                 <ProductItem key={product._id} product={product} />
               ))}
             </div>
-            <div className="mt-10">
+            <div className="mt-10 flex item-center gap-5">
               {products.length > 0 &&
                 Array.from(Array(totalPages).keys()).map((p) => (
                   <Link
                     key={p}
                     className={`px-4 py-2  text-white rounded-lg ${
-                      Number(page) === p + 1 ? "bg-gray-500" : "bg-gray-600"
+                      Number(page) === p + 1 ? "bg-gray-400" : "bg-gray-700"
                     } `}
                     href={getFilterUrl({ pg: `${p + 1}` })}
                   >

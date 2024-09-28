@@ -8,7 +8,7 @@ export const revalidate = 3600;
 const getFlashSales = cache(async () => {
   await dbConnect();
   const flashSaleProducts = await Product.find({ isFlashSale: true })
-    .limit(6)
+    .limit(4)
     .lean();
   return flashSaleProducts as TProduct[];
 });
@@ -16,7 +16,7 @@ const getFlashSales = cache(async () => {
 const getFeatured = cache(async () => {
   await dbConnect();
   const featuredProducts = await Product.find({ isFeatured: true })
-    .limit(6)
+    .limit(8)
     .lean();
   return featuredProducts as TProduct[];
 });
@@ -25,7 +25,7 @@ const getLatest = cache(async () => {
   await dbConnect();
   const latestProducts = await Product.find({})
     .sort({ _id: -1 })
-    .limit(6)
+    .limit(8)
     .lean();
   return latestProducts as TProduct[];
 });
@@ -80,7 +80,7 @@ const getByQuery = cache(
         ? { rating: -1 }
         : { _id: -1 };
 
-    const PAGE_SIZE = 3;
+    const PAGE_SIZE = 6;
 
     const skip = PAGE_SIZE * (Number(page) - 1);
 

@@ -42,6 +42,7 @@ const UploadImage = forwardRef<HTMLInputElement, TProps>(
           onUploadStart={onUploadStart}
           style={{ display: "none" }}
           ref={ref}
+          folder="e-gadget"
           // {...field}
         />
         {/* {ref && (

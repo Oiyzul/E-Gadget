@@ -43,7 +43,9 @@ const Navbar = () => {
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <h1 className="text-2xl text-bold text-sky-500">E-Gadget</h1>
+            <Link href="/">
+              <h1 className="text-2xl text-bold text-sky-500">E-Gadget</h1>
+            </Link>
           </div>
           <ul className="hidden md:flex flex-1 items-center justify-center gap-5">
             <li>

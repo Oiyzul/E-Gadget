@@ -18,6 +18,7 @@ const productSchema = new Schema<TProduct>(
     variant: { type: String },
     isFlashSale: { type: Boolean, default: false },
     isFeatured: { type: Boolean, default: false },
+    discount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

@@ -4,15 +4,14 @@
 // import User from "@/lib/models/userModel";
 // import { NextResponse } from "next/server";
 
-import { NextResponse } from "next/server"
 
 // export const GET = async () => {
 //   const { users, products } = data;
-
+//   console.log(products)
 //   await dbConnect();
 
-//   await User.deleteMany();
-//   await User.insertMany(users);
+//   // await User.deleteMany();
+//   // await User.insertMany(users);
 
 //   await Product.deleteMany();
 //   await Product.insertMany(products);
@@ -23,6 +22,8 @@ import { NextResponse } from "next/server"
 //     products,
 //   });
 // };
+
+import { NextResponse } from "next/server"
 
 export const GET = async () => {
   return new NextResponse(null)

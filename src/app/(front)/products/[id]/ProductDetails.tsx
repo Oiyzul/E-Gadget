@@ -3,14 +3,17 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { TProductProps } from "../../../types";
-import Rating from "../Rating";
-import { Separator } from "../ui/separator";
-import AddToCart from "../cart/AddToCart";
+import { TProductProps } from "../../../../../types";
+import Rating from "../../../../components/Rating";
+import { Separator } from "../../../../components/ui/separator";
+import AddToCart from "../../../../components/cart/AddToCart";
+import AddReview from "@/components/review/AddReview";
+import Reviews from "@/components/review/Reviews";
 
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const {
+    _id,
     name,
     model,
     brand,
@@ -117,6 +120,8 @@ const ProductDetails = ({ product }: TProductProps) => {
           <span className="text-red-500 font-bold">Flash Sale! Hurry Up!</span>
         )}
       </div>
+      <AddReview productId={_id!} />
+      <Reviews productId={_id!} />
     </div>
   );
 };
