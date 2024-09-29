@@ -18,20 +18,26 @@ export const GET = async () => {
 };
 
 export const POST = async (request: NextRequest) => {
-  const payload = await request.json();
-  
   await dbConnect();
+  try {
+    const payload = await request.json();
+    console.log(payload);
+    const newProduct = await Product.create(payload);
 
-  const newProduct = await Product.create(payload);
-
-  return NextResponse.json(
-    {
-      success: true,
-      message: "Product created successfully.",
-      data: newProduct,
-    },
-    { status: 201 }
-  );
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Product created successfully.",
+        data: newProduct,
+      },
+      { status: 201 }
+    );
+  } catch (err: any) {
+    return NextResponse.json({
+      success: false,
+      message: err.message || "Failed to create product",
+    });
+  }
 };
 
 export const PUT = async (request: NextRequest) => {

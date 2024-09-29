@@ -8,6 +8,12 @@ import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 import { TProduct } from "../../../types";
 import ProductServices from "@/lib/services/productServices";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: "Home | E-Gadget",
+  description: "Discover our latest products and get ready to shop",
+}
 
 const HomePage = async () => {
   const flashSaleProducts = await ProductServices.getFlashSales() 
@@ -24,14 +30,14 @@ const HomePage = async () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">Flash Sale</h1>
             <Button
               asChild
-              className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
+              className="bg-gray-900 rounded-[10px] hover:bg-gray-950 px-5 text-white"
             >
               <Link href="/flash-sale" className="flex gap-2">
                 View All <ArrowBigRight />
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {flashSaleProducts?.map((product: TProduct) => (
               <FlashSaleItem
                 key={`flashsale-${product._id}`}
@@ -46,7 +52,7 @@ const HomePage = async () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">Our Latest Collection</h1>
             <Button
               asChild
-              className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
+              className="bg-gray-900 rounded-[10px] hover:bg-gray-950 px-5 text-white"
             >
               <Link href="/products?sort=newest" className="flex gap-2">
                 View All <ArrowBigRight />
@@ -76,7 +82,7 @@ const HomePage = async () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">Our Most Popular</h1>
             <Button
               asChild
-              className="bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
+              className="bg-gray-900 rounded-[10px] hover:bg-gray-950 px-5 text-white"
             >
               <Link href="/products?sort=rating" className="flex gap-2">
                 View All <ArrowBigRight />

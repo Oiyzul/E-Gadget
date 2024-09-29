@@ -4,7 +4,6 @@ const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addReview: builder.mutation({
       query: (data) => {
-        console.log("data", data);
         return {
           url: "/reviews/add-review",
           method: "POST",

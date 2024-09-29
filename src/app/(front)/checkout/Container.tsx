@@ -32,7 +32,7 @@ const Container = () => {
   };
 
   return (
-    <section className="h-screen">
+    <section className="min-h-screen">
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-20">
           <div className="col-span-2 md:order-2">

@@ -1,8 +1,8 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3000/api',
-  // baseUrl: "https://e-gadget-murex.vercel.app/api",
+  // baseUrl: 'http://localhost:3000/api',
+  baseUrl: "https://egadgetbd.vercel.app/api",
   
   //   credentials: "include",
   //   prepareHeaders: (headers, { getState }) => {

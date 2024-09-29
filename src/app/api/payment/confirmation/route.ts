@@ -1,8 +1,8 @@
 import Order from "@/lib/models/orderModel";
 import axios from "axios";
-import { readFileSync } from "fs";
+// import { readFileSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
-import { join } from "path";
+// import { join } from "path";
 
 export async function POST(requset: NextRequest) {
   const searchParams = requset.nextUrl.searchParams;
@@ -11,10 +11,10 @@ export async function POST(requset: NextRequest) {
   // console.log(orderId, transactionId);
   // Verify the payment confirmation data
   const verifiedResponse = await verifyPayment(transactionId!);
-  // console.log(verifiedResponse);
+  console.log(verifiedResponse);
   let message;
   if (verifiedResponse && verifiedResponse.pay_status === "Successful") {
-  await Order.findByIdAndUpdate(orderId, {
+    await Order.findByIdAndUpdate(orderId, {
       isPaid: true,
       paidAt: verifiedResponse.date,
     });
@@ -23,17 +23,36 @@ export async function POST(requset: NextRequest) {
     message = "Payment failed";
   }
 
-  let template;
-  try {
-    const filePath = join(__dirname, "/views/success-page.html");
-    console.log("directory", __dirname, filePath);
-    template = readFileSync(filePath, "utf8");
-    template.replace("{{ message }}", message);
-  } catch (err) {
-    console.log(err);
-  }
+  const template = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payment Confirmation</title>
+      </head>
+      <body>
+        <h1>Payment Confirmation</h1>
+        <p>${message}!</p>
+      </body>
+    </html>
+  `;
 
-  return NextResponse.json(template);
+  // try {
+  //   const filePath = join(__dirname, "/views/success-page.html");
+  //   console.log("directory", __dirname, filePath);
+  //   template = readFileSync(filePath, "utf8");
+  //   template.replace("{{ message }}", message);
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+  return new NextResponse(template, {
+    headers: {
+      "Content-Type": "text/html",
+    },
+    status: 200,
+  });
 }
 
 async function verifyPayment(tnxId: string) {

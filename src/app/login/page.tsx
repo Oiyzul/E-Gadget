@@ -2,7 +2,7 @@ import SigninForm from "./SigninForm";
 
 const SigninPage = () => {
   return (
-    <section className="section">
+    <section className="section place-content-center">
       <SigninForm />
     </section>
   );

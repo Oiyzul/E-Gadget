@@ -7,7 +7,7 @@ type TProps = {
 
 const MaxWidthWrapper = ({ className, children }: TProps) => {
   return (
-    <div className={cn("w-full max-w-screen-xl mx-auto p-2", className)}>
+    <div className={cn("w-full max-w-screen-xl mx-auto p-4", className)}>
       {children}
     </div>
   );

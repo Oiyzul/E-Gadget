@@ -18,9 +18,7 @@ interface AddToCartProps {
 const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
   const dispatch = useDispatch();
   const { items } = useAppSelector(selectCart);
-  const existedItem = items.find(
-    (item: TCartItem) => item.id === product._id
-  );
+  const existedItem = items.find((item: TCartItem) => item.id === product._id);
 
   const newItem = {
     id: product._id as string,
@@ -29,8 +27,8 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     image: product.images[0],
     // color: product?.colors[0],
     variant: product.variant,
-    // discount: product?.discount,
-  } as TCartItem
+    discount: product?.discount,
+  } as TCartItem;
 
   const handleAddToCart = () => {
     dispatch(addToCart(newItem));
@@ -45,7 +43,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
   };
 
   return existedItem ? (
-    <div className="border-2 rounded-full w-28 flex justify-between px-2 py-1">
+    <div className="border-2 border-gray-950 dark:border-white rounded-full w-28 flex justify-between px-2 py-1">
       <button className="" onClick={handleDecreaseQuantity}>
         <Minus />
       </button>
@@ -56,7 +54,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     </div>
   ) : (
     <button
-      className="bg-green-500 px-4 py-2 rounded-full text-white"
+      className="bg-gray-950 px-4 py-2 rounded-[10px] text-white shadow-xl"
       onClick={handleAddToCart}
     >
       Add to Cart

@@ -10,18 +10,19 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import UploadImage from "@/components/UploadImage";
+import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
+import { useRef, useState } from "react";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
 import { TProduct } from "../../../../types";
-import { useRef, useState } from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { X } from "lucide-react";
 
 type TProps = {
   form: UseFormReturn<TProduct, any, undefined>;
   onSubmit: (data: TProduct) => void;
 };
+
 
 const ProductForm = ({ form, onSubmit }: TProps) => {
   const { isSubmitting } = form.formState;
@@ -54,7 +55,7 @@ const ProductForm = ({ form, onSubmit }: TProps) => {
     setIsUploading(false);
   };
 
-  console.log(form.getValues());
+  // console.log(form.getValues());
   return (
     <Form {...form}>
       <form

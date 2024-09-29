@@ -38,7 +38,7 @@ const CartModal = ({ open, setOpen }: TProps) => {
       initial="initial"
       animate={open ? "animate" : ""}
       exit="initial"
-      className="absolute top-12 right-0 h-[calc(100vh-50px)] w-[300px] bg-white dark:bg-black p-4 z-10 shadow-xl"
+      className="absolute top-12 right-0 h-[calc(100vh-50px)] w-[300px] bg-white dark:bg-black p-4 z-[1000] shadow-xl"
     >
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
       {items.length === 0 ? (

@@ -18,7 +18,7 @@ const productApi = baseApi.injectEndpoints({
       query: (data) => ({
         method: "POST",
         url: "/products",
-        body: { data },
+        body: data,
       }),
       invalidatesTags: ["products"],
     }),

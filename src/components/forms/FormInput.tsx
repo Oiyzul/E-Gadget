@@ -33,7 +33,7 @@ const FormInput = ({
   placeholder,
   type = "text",
   label = "",
-  required = true,
+  required = false,
   textArea = false,
   disabled = false,
 }: TProps) => {

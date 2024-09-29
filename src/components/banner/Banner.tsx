@@ -46,7 +46,7 @@ const Banner = () => {
         </p>
       </div>
 
-      <div className={cn(theme === 'light' ? 'bg-gray-900': 'bg-black')}>
+      <div className={cn(theme === "light" ? "bg-gray-900" : "bg-black")}>
         <Carousel
           plugins={[plugin.current]}
           className="max-w-screen-xl mx-auto"
@@ -60,7 +60,12 @@ const Banner = () => {
                 className="grid grid-cols-1 sm:grid-cols-2 relative"
               >
                 <div className="p-1 col-span-1 w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] relative">
-                  <Image src={item.image} alt="mobile" fill className="object-cover" />
+                  <Image
+                    src={item.image}
+                    alt="mobile"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <m.div
                   className="sm:col-span-1 hidden sm:h-[400px] md:h-[450px] lg:h-[500px] sm:flex flex-col gap-5 justify-center px-[60px] py-2 md:p-[23px] lg:p-[51.6px]"
@@ -69,19 +74,22 @@ const Banner = () => {
                   animate={index === item.id - 1 && "visible"}
                 >
                   <m.h1
-                    className="text-4xl font font-semibold md:text-5xl lg:text-7xl text-white"
+                    className={cn(
+                      "text-4xl font font-semibold md:text-5xl lg:text-7xl",
+                      item.titleColor
+                    )}
                     variants={carouselText}
                   >
                     {item.title}
                   </m.h1>
                   <m.p
-                    className="text-3xl text-cyan-500"
+                    className={cn("text-3xl text-cyan-500", item.desColor)}
                     variants={carouselText}
                   >
                     {item.description}
                   </m.p>
                   <m.p
-                    className="text-3xl text-blue-500"
+                    className={cn("text-3xl text-blue-500", item.priceColor)}
                     variants={carouselText}
                   >
                     {item.price} BDT
@@ -107,6 +115,9 @@ const carouselContents = [
     description: "Choose before stock out.",
     price: 43000,
     image: b1,
+    titleColor: "text-white",
+    desColor: "text-cyan-500",
+    priceColor: "text-green-500",
   },
   {
     id: 2,
@@ -114,6 +125,9 @@ const carouselContents = [
     description: "Buy 2 get 1 free.",
     price: 120000,
     image: b2,
+    titleColor: "text-orange-500",
+    desColor: "text-purple-500",
+    priceColor: "text-blue-500",
   },
   {
     id: 3,
@@ -121,5 +135,8 @@ const carouselContents = [
     description: "Limited time offer.",
     price: 40000,
     image: b3,
+    titleColor: "text-green-500",
+    desColor: "text-white",
+    priceColor: "text-red-500",
   },
 ];

@@ -2,10 +2,20 @@ import Image from "next/image";
 import { TProduct } from "../../../types";
 import Link from "next/link";
 import Rating from "../Rating";
+import AddToCart from "../cart/AddToCart";
 
-const ProductItem = ({ product }: { product: TProduct }) => {
-  const { _id, name, images, model, features, price, rating, discount } =
-    product;
+const ProductItemWithCart = ({ product }: { product: TProduct }) => {
+  const {
+    _id,
+    name,
+    images,
+    model,
+    features,
+    price,
+    rating,
+    countInStock,
+    discount,
+  } = product;
 
   return (
     <div
@@ -13,12 +23,13 @@ const ProductItem = ({ product }: { product: TProduct }) => {
       className="w-full mx-auto bg-gray-900 text-white rounded-lg"
     >
       <div className="relative overflow-hidden rounded-lg shadow-lg group">
-        <div 
-        // className="relative w-[200px] h-[200px] md:w-[280px] md:h-[250px]"
+        <div
+        //  className="relative w-[200px] h-[200px] md:w-[280px] md:h-[250px]"
         >
           <Image
             src={images[0]}
             alt="Card Image"
+            // fill
             layout="responsive"
             width={300}
             height={200}
@@ -49,9 +60,20 @@ const ProductItem = ({ product }: { product: TProduct }) => {
             </button>
           </Link>
         </div>
+        <div className="w-full text-center mx-auto relative z-50 mb-2 flex items-center justify-center">
+          {countInStock !== 0 ? (
+            <div>
+              <AddToCart product={product} />
+            </div>
+          ) : (
+            <div className="text-red-500 font-bold">
+              <p>Out of Stock</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProductItem;
+export default ProductItemWithCart;

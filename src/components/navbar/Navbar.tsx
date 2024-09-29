@@ -80,13 +80,23 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link
-                        href={"/dashboard/my-orders"}
-                        className="flex gap-4 items-center"
-                      >
-                        <ShoppingBag className=" h-4 w-4" />
-                        <span>My Orders</span>
-                      </Link>
+                      {session.user.isAdmin ? (
+                        <Link
+                          href={"/dashboard/products"}
+                          className="flex gap-4 items-center"
+                        >
+                          <ShoppingBag className=" h-4 w-4" />
+                          <span>Products</span>
+                        </Link>
+                      ) : (
+                        <Link
+                          href={"/dashboard/my-orders"}
+                          className="flex gap-4 items-center"
+                        >
+                          <ShoppingBag className=" h-4 w-4" />
+                          <span>My Orders</span>
+                        </Link>
+                      )}
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />

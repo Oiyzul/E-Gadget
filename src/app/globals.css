@@ -58,9 +58,10 @@
 }
 
 .section {
-  min-height: 100dvh;
+  min-height: 70dvh;
   display: grid;
-  place-content: center;
+  /* place-content: center; */
+  margin-block: 100px;
 }
 
 @layer base {

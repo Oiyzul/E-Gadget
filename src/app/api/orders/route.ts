@@ -4,8 +4,14 @@ import { round2 } from "@/lib/utils";
 import { TOrderItem } from "../../../../types";
 import Order from "@/lib/models/orderModel";
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 
-export const POST = async (req: any) => {
+export const POST = auth(async (req: any) => {
+  if (!req.auth) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  const { user } = req.auth;
   try {
     const payload = await req.json();
 
@@ -22,7 +28,7 @@ export const POST = async (req: any) => {
     const dbOrderItems = payload.items.map((x: { id: string }) => {
       //@ts-ignore
       const { id, ...rest } = x;
-      console.log(id)
+      console.log(id);
       return {
         ...rest,
         product: x.id,
@@ -43,7 +49,7 @@ export const POST = async (req: any) => {
       totalPrice,
       paymentMethod: payload.paymentMethod,
       shippingAddress: payload.shippingAddress,
-      customer: dbOrderItems[0].product,
+      customer: user._id,
     });
 
     return Response.json(
@@ -52,7 +58,7 @@ export const POST = async (req: any) => {
         message: "Order created successfully",
         order: newOrder,
       },
-      { status: 200 }
+      { status: 201 }
     );
   } catch (err: any) {
     console.log(err);
@@ -64,7 +70,7 @@ export const POST = async (req: any) => {
       { status: 500 }
     );
   }
-};
+});
 
 const calcPrices = (orderItems: TOrderItem[]) => {
   // Calculate the items price
@@ -99,7 +105,7 @@ export const PUT = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const id = searchParams.get("id");
   const payload = await request.json();
-  
+
   await dbConnect();
 
   const order = await Order.findByIdAndUpdate(id, payload);

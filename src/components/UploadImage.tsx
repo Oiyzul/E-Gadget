@@ -3,7 +3,7 @@
 import uploadAuthenticator from "@/lib/uploadAuthenticator";
 import { IKUpload, ImageKitProvider } from "imagekitio-next";
 import { IKUploadResponse } from "imagekitio-next/dist/types/components/IKUpload/props";
-import { Dispatch, forwardRef, SetStateAction } from "react";
+import { Dispatch, forwardRef, SetStateAction, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { TProduct } from "../../types";
 
@@ -21,10 +21,14 @@ const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 
 const UploadImage = forwardRef<HTMLInputElement, TProps>(
   ({ setIsUploading, onSuccess }, ref) => {
+    const [error, setError] = useState("");
     const onError = (err: any) => {
       console.log("Error", err);
+      setError(err.message);
+      setIsUploading(false);
     };
     const onUploadStart = () => {
+      setError('')
       setIsUploading(true);
     };
 
@@ -55,6 +59,7 @@ const UploadImage = forwardRef<HTMLInputElement, TProps>(
             </Button>
           )} */}
         {/* </div> */}
+        <div>{error && error}</div>
       </ImageKitProvider>
     );
   }

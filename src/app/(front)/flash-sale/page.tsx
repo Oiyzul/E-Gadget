@@ -3,6 +3,12 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import FlashSaleItem from "@/components/products/FlashSaleItem";
 import ProductServices from "@/lib/services/productServices";
 
+export const metadata = {
+  title: "Flash Sales - Your Online Store",
+  description: "Check out our latest flash sale products at our store.",
+  keywords: ["flash sale", "electronics", "clothing", "accessories"],
+};
+
 const FlashSalePage = async () => {
   const products = await ProductServices.getFlashSales();
 

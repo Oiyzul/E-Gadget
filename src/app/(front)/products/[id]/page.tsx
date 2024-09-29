@@ -1,13 +1,21 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import Reviews from "@/components/review/Reviews";
 import ProductServices from "@/lib/services/productServices";
 import { convertDocToObj } from "@/lib/utils";
 import ProductDetails from "./ProductDetails";
 
-const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
-  console.log(params.id);
+export async function generateMetadata({ params }: { params: { id: string } }) {
   const product = await ProductServices.getById(params.id);
-  console.log(product);
+  if (!product) {
+    return { title: "Product not found" };
+  }
+  return {
+    title: product.name,
+    description: product.description,
+  };
+}
+
+const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
+  const product = await ProductServices.getById(params.id);
 
   return (
     <MaxWidthWrapper className="">

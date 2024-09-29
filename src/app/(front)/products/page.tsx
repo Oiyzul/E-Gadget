@@ -1,6 +1,6 @@
 import { Rating } from "@/components";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import ProductItem from "@/components/products/ProductItem";
+import ProductItemWithCart from "@/components/products/ProductItemWithCart";
 import ProductServices from "@/lib/services/productServices";
 import Link from "next/link";
 
@@ -52,6 +52,28 @@ const prices = [
 const ratings = [5, 4, 3, 2, 1];
 
 const sortOrders = ["newest", "lowest", "highest", "rating"];
+
+export async function generateMetadata({
+  searchParams: { q = "all", category = "all", price = "all", rating = "all" },
+}: TSearchParams) {
+  if (
+    (q !== "all" && q !== "") ||
+    category !== "all" ||
+    rating !== "all" ||
+    price !== "all"
+  ) {
+    return {
+      title: `Search ${q !== "all" ? q : ""}
+      ${category !== "all" ? ` : Category ${category}` : ""}
+      ${price !== "all" ? ` : Price ${price}` : ""}
+      ${rating !== "all" ? ` : Rating ${rating}` : ""}`,
+    };
+  } else {
+    return {
+      title: "Search Products",
+    };
+  }
+}
 
 const ProductsPage = async ({
   searchParams: {
@@ -172,7 +194,7 @@ const ProductsPage = async ({
           </div>
         </div>
         <div className="md:col-span-4">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex flex-wrap items-center justify-between py-4">
             <div className="flex items-center">
               {products.length === 0 ? "No" : totalCount} Results
               {q !== "all" && q !== "" && " : " + q}
@@ -208,9 +230,9 @@ const ProductsPage = async ({
           </div>
 
           <div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3  ">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3  ">
               {products.map((product) => (
-                <ProductItem key={product._id} product={product} />
+                <ProductItemWithCart key={product._id} product={product} />
               ))}
             </div>
             <div className="mt-10 flex item-center gap-5">

@@ -4,6 +4,11 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  return {
+    title: `Order Details | ${params.id}`,
+  };
+}
 const OrdersPage = async ({ params }: { params: { id: string } }) => {
   const session = await auth();
   if (!session || !session.user._id) {
@@ -11,6 +16,7 @@ const OrdersPage = async ({ params }: { params: { id: string } }) => {
   }
 
   const order = await OrderServices.getOrderById(params.id);
+  
   return (
     <section className="min-h-screen">
       <MaxWidthWrapper>

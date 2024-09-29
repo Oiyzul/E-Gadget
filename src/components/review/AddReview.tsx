@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useAddReviewMutation } from "@/redux/features/review/reviewApi";
+import { toast } from "@/hooks/use-toast";
 
 const AddReview = ({ productId }: { productId: string }) => {
   const [feedback, setFeedback] = useState("");
@@ -16,13 +17,6 @@ const AddReview = ({ productId }: { productId: string }) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log(
-      session,
-      feedback,
-      rating,
-      session?.user?._id,
-      session?.user?.name
-    );
     if (feedback && rating && session?.user._id) {
       const newReview = {
         product: productId,
@@ -31,10 +25,13 @@ const AddReview = ({ productId }: { productId: string }) => {
         rating,
         feedback,
       };
-      console.log(newReview);
+
       const res = await addReview(newReview).unwrap();
       if (res.success) {
-        console.log("Review added successfully!");
+        toast({
+          title: "Review added successfully!",
+          description: "Your review has been submitted successfully!",
+        });
       }
       setFeedback("");
       setRating(0);

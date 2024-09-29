@@ -11,7 +11,7 @@ export const GET = async (
   const { id } = params;
   const reiews = await Review.find({
     product: id,
-  });
+  }).sort({ _id: -1 });
 
   return NextResponse.json(
     {
