@@ -9,6 +9,7 @@ type TSearchParams = {
     q: string;
     category: string;
     price: string;
+    brand: string;
     rating: string;
     sort: string;
     page: string;
@@ -18,6 +19,7 @@ type TSearchParams = {
 type TFilter = {
   c?: string;
   p?: string;
+  b?: string;
   r?: string;
   s?: string;
   pg?: string;
@@ -49,22 +51,32 @@ const prices = [
   },
 ];
 
+const brands = ["Samsung", "Xiaomi", "Oppo", "Realme", "Google Pixel"];
+
 const ratings = [5, 4, 3, 2, 1];
 
 const sortOrders = ["newest", "lowest", "highest", "rating"];
 
 export async function generateMetadata({
-  searchParams: { q = "all", category = "all", price = "all", rating = "all" },
+  searchParams: {
+    q = "all",
+    category = "all",
+    price = "all",
+    brand = "all",
+    rating = "all",
+  },
 }: TSearchParams) {
   if (
     (q !== "all" && q !== "") ||
     category !== "all" ||
     rating !== "all" ||
-    price !== "all"
+    price !== "all" ||
+    brand !== "all"
   ) {
     return {
       title: `Search ${q !== "all" ? q : ""}
       ${category !== "all" ? ` : Category ${category}` : ""}
+      ${brand !== "all" ? ` : Brand ${brand}` : ""}
       ${price !== "all" ? ` : Price ${price}` : ""}
       ${rating !== "all" ? ` : Rating ${rating}` : ""}`,
     };
@@ -80,15 +92,17 @@ const ProductsPage = async ({
     q = "all",
     category = "all",
     price = "all",
+    brand = "all",
     rating = "all",
     sort = "newest",
     page = "1",
   },
 }: TSearchParams) => {
-  const getFilterUrl = ({ c, s, p, r, pg }: TFilter) => {
-    const params = { q, category, price, rating, sort, page };
+  const getFilterUrl = ({ c, s, p, b, r, pg }: TFilter) => {
+    const params = { q, category, price, brand, rating, sort, page };
     if (c) params.category = c;
     if (p) params.price = p;
+    if (b) params.brand = b;
     if (r) params.rating = r;
     if (pg) params.page = pg;
     if (s) params.sort = s;
@@ -102,11 +116,13 @@ const ProductsPage = async ({
       q,
       category,
       price,
+      brand,
       rating,
       sort,
       page,
     }
   );
+
   return (
     <MaxWidthWrapper>
       <div className="grid md:grid-cols-5 md:gap-5">
@@ -166,7 +182,34 @@ const ProductsPage = async ({
             </ul>
           </div>
           <div>
-            <div className="text-xl pt-3">Customer Review</div>
+            <div className="text-xl pt-3">Brand</div>
+            <ul>
+              <li>
+                <Link
+                  className={`text-orange-500 hover:text-orange-600 ${
+                    "all" === brand && "text-gray-500"
+                  }`}
+                  href={getFilterUrl({ b: "all" })}
+                >
+                  Any
+                </Link>
+              </li>
+              {brands.map((b) => (
+                <li key={b}>
+                  <Link
+                    href={getFilterUrl({ b })}
+                    className={`hover:text-gray-200 ${
+                      b === brand && "text-gray-300"
+                    }`}
+                  >
+                    {b}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-xl pt-3">Review</div>
             <ul>
               <li>
                 <Link

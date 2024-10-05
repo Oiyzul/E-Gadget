@@ -34,6 +34,7 @@ type TQuery = {
   category: string;
   sort: string;
   price: string;
+  brand: string;
   rating: string;
   page: string;
 };
@@ -42,7 +43,7 @@ type TUser = {
   _id: Types.ObjectId;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   imgUrl?: string;
   isAdmin: boolean;
 };

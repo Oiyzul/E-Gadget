@@ -4,7 +4,7 @@ import { FormInput } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -109,6 +109,11 @@ const RegisterForm = () => {
         </Form>
 
         <div>
+          <Button className="w-full" onClick={() => signIn("google")}>
+            Sign in with google
+          </Button>
+        </div>
+        <div className="mt-3">
           Already have an account?
           <Link
             className="text-sky-500 font-semibold"

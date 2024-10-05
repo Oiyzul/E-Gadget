@@ -54,7 +54,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     </div>
   ) : (
     <button
-      className="bg-gray-950 px-4 py-2 rounded-[10px] text-white shadow-xl"
+      className="bg-gray-950 dark:bg-white px-4 py-2 rounded-[10px] text-white dark:text-gray-950 shadow-xl"
       onClick={handleAddToCart}
     >
       Add to Cart

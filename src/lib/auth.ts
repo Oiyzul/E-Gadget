@@ -1,6 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import NextAuth, { NextAuthConfig } from "next-auth";
+import Google from "next-auth/providers/google";
+
 import dbConnect from "./dbConnect";
 import User from "./models/userModel";
 
@@ -28,6 +30,7 @@ export const config = {
         return null;
       },
     }),
+    Google,
   ],
   pages: {
     signIn: "/login",
@@ -39,7 +42,7 @@ export const config = {
       const protectedPaths = [
         /\/checkout/,
         /\/order\/(.*)/,
-        /\/dashboard\/(.*)/
+        /\/dashboard\/(.*)/,
       ];
 
       const { pathname } = request.nextUrl;
@@ -71,8 +74,51 @@ export const config = {
       }
       return session;
     },
+    async signIn({ user, account, profile }) {
+      // console.log(user, account, profile);
+      // if (account?.provider === "google") {
+      //   await dbConnect();
+      //   const existingUser = await User.findOne({ email: user.email });
+      //   if (existingUser) return true;
+      //   if (!existingUser) {
+      //     await User.create({
+      //       email: user.email,
+      //       name: user.name,
+      //       imgUrl: user.image,
+      //     });
+      //   }
+      // }
+      if (account?.provider === "google") {
+        const { name, email, image } = user;
+        await dbConnect();
+        try {
+          const userExists = await User.findOne({ email });
+
+          if (!userExists) {
+            const res = await fetch("http://localhost:3000/api/auth/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                imgUrl: image,
+              }),
+            });
+
+            if (res.ok) {
+              return user;
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return true;
+    },
   },
-} as NextAuthConfig
+} as NextAuthConfig;
 
 export const {
   handlers: { GET, POST },

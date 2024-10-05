@@ -37,7 +37,7 @@ const getById = cache(async (id: string) => {
 });
 
 const getByQuery = cache(
-  async ({ q, category, sort, price, rating, page = "1" }: TQuery) => {
+  async ({ q, category, sort, price, brand, rating, page = "1" }: TQuery) => {
     await dbConnect();
 
     const queryFilter =
@@ -51,7 +51,8 @@ const getByQuery = cache(
         : {};
 
     const categoryFilter = category && category !== "all" ? { category } : {};
-
+    const brandFilter = brand && brand !== "all" ? { brand } : {};
+    console.log(brand, brandFilter)
     const ratingFilter =
       rating && rating !== "all"
         ? {
@@ -91,6 +92,7 @@ const getByQuery = cache(
         ...queryFilter,
         ...categoryFilter,
         ...priceFilter,
+        ...brandFilter,
         ...ratingFilter,
       },
       "-reviews"
@@ -104,6 +106,7 @@ const getByQuery = cache(
       ...queryFilter,
       ...categoryFilter,
       ...priceFilter,
+      ...brandFilter,
       ...ratingFilter,
     });
 

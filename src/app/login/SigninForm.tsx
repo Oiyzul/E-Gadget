@@ -50,6 +50,7 @@ const SigninForm = () => {
       console.error(error);
     }
   };
+
   return (
     <Card className="p-8 min-w-sm">
       <CardHeader>
@@ -92,6 +93,12 @@ const SigninForm = () => {
         </Form>
 
         <div>
+          <Button className="w-full" onClick={() => signIn("google")}>
+            Sign in with google
+          </Button>
+        </div>
+
+        <div className="mt-3">
           Need an account?{" "}
           <Link
             className="text-sky-500 font-semibold"
