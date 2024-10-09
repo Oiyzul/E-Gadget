@@ -14,7 +14,7 @@ import FormInput from "./forms/FormInput";
 import UploadImage from "./UploadImage";
 import Image from "./Image";
 import CountdownTimer from "./CountDownTimer";
-
+import Facility from "./Facility";
 export {
   Navbar,
   Providers as Providers,
@@ -31,5 +31,6 @@ export {
   FormInput,
   UploadImage,
   Image,
-  CountdownTimer
+  CountdownTimer,
+  Facility,
 };

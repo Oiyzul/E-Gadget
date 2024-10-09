@@ -1,15 +1,12 @@
-import { Banner, TopBrands } from "@/components";
+import { Banner, BrandNames, Facility, TopBrands } from "@/components";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import FlashSaleItem from "@/components/products/FlashSaleItem";
 import ProductItem from "@/components/products/ProductItem";
-import { Button } from "@/components/ui/button";
-import { convertDocToObj } from "@/lib/utils";
-import { ArrowBigRight } from "lucide-react";
-import Link from "next/link";
-import { TProduct } from "../../../types";
 import ProductServices from "@/lib/services/productServices";
+import { convertDocToObj } from "@/lib/utils";
 import { Metadata } from "next";
-import AnimatedTitle from "@/components/AnimatedTitle";
+import { TProduct } from "../../../types";
 
 export const metadata: Metadata = {
   title: "Home | E-Gadget",
@@ -17,10 +14,12 @@ export const metadata: Metadata = {
 };
 
 const HomePage = async () => {
-  const flashSaleProducts = await ProductServices.getFlashSales();
-  const featuredProducts = await ProductServices.getFeatured();
-  const latestProducts = await ProductServices.getLatest();
-  //  let flashSaleProducts, featuredProducts, latestProducts = []
+  // const flashSaleProducts = await ProductServices.getFlashSales();
+  // const featuredProducts = await ProductServices.getFeatured();
+  // const latestProducts = await ProductServices.getLatest();
+  let flashSaleProducts,
+    featuredProducts,
+    latestProducts = [];
 
   return (
     <main>
@@ -40,19 +39,10 @@ const HomePage = async () => {
         </section>
         {/* latest product */}
         <section className="section">
-          <div className="mb-10 flex justify-between">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">
-              Our Latest Collection
-            </h1>
-            <Button
-              asChild
-              className="bg-gray-900 rounded-[10px] hover:bg-gray-950 px-5 text-white"
-            >
-              <Link href="/products?sort=newest" className="flex gap-2">
-                View All <ArrowBigRight />
-              </Link>
-            </Button>
-          </div>
+          <AnimatedTitle
+            title="Our Latest Collection"
+            link="/products?sort=newest"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
             {latestProducts.length > 1 &&
               latestProducts?.map((product: TProduct) => (
@@ -71,20 +61,11 @@ const HomePage = async () => {
           <TopBrands />
         </section>
 
-        <section className="mt-10 md:mt-20 min-h-screen grid place-content-center">
-          <div className="mb-10 flex justify-between">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white">
-              Our Most Popular
-            </h1>
-            <Button
-              asChild
-              className="bg-gray-900 rounded-[10px] hover:bg-gray-950 px-5 text-white"
-            >
-              <Link href="/products?sort=rating" className="flex gap-2">
-                View All <ArrowBigRight />
-              </Link>
-            </Button>
-          </div>
+        <section className="section">
+          <AnimatedTitle
+            title="Our Most Popular"
+            link="/products?sort=rating"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
             {featuredProducts?.length > 1 &&
@@ -97,6 +78,8 @@ const HomePage = async () => {
           </div>
         </section>
       </MaxWidthWrapper>
+      <BrandNames />
+      <Facility />
       {/* <BrandNames /> */}
     </main>
   );

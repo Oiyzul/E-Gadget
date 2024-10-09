@@ -1,8 +1,10 @@
 "use client";
+
 import { ArrowBigRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 const topBrands = [
   {
@@ -31,10 +33,22 @@ const topBrands = [
 
 const TopBrands = () => {
   return (
-    <div className="">
+    <div className="mt-10">
       <div className="text-center mb-5">
-        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-gray-500 dark:text-white">Top Brands</h1>
-        <p className="">Choose from one of our top brands.</p>
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold mb-2 text-gray-500 dark:text-white"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Top Brands
+        </motion.h1>
+        <motion.p
+          className=""
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Choose from one of our top brands.
+        </motion.p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="my-auto relative shadow-xl hover:shadow-2xl">
@@ -102,16 +116,20 @@ const TopBrands = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full text-center">
+      <motion.div
+        className="mx-auto w-full text-center"
+        // initial={{ opacity: 0, y: 50 }}
+        // whileInView={{ opacity: 1, y: 0 }}
+      >
         <Button
           asChild
-          className="mt-5 bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
+          className="mt-7 bg-gray-900 rounded-full hover:bg-gray-950 px-5 text-white"
         >
           <Link href="/products" className="flex gap-2">
             View All <ArrowBigRight />
           </Link>
         </Button>
-      </div>
+      </motion.div>
     </div>
   );
 };
