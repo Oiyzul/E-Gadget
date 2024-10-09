@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { selectCart } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
 import {
+  LayoutDashboard,
   LogIn,
   LogOut,
   Menu,
@@ -28,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import Image from "next/image";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -43,11 +45,11 @@ const Navbar = () => {
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <Link href="/">
-              <h1 className="text-2xl text-bold text-sky-500">E-Gadget</h1>
+          <Link href="/">
+              <h1 className="text-2xl font-bold tracking-widest text-sky-500 uppercase">E-Gadget</h1>
             </Link>
           </div>
-          <ul className="hidden md:flex flex-1 items-center justify-center gap-5">
+          <ul className="hidden md:flex flex-1 items-center justify-center gap-7">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -62,8 +64,21 @@ const Navbar = () => {
             {session?.user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="rounded-full px-2">
-                    <User />
+                  <Button
+                    variant="outline"
+                    className="rounded-full w-10 h-10 px-2 font-semibold text-xl capitalize relative"
+                  >
+                    {/* <User /> */}
+                    {session?.user.image ? (
+                      <Image
+                        src={session?.user.image}
+                        fill
+                        alt="user"
+                        className="object-cover"
+                      />
+                    ) : (
+                      session?.user.name?.substring(0, 1)
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
@@ -72,7 +87,7 @@ const Navbar = () => {
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       <Link
-                        href={"/dashboard/user/profile"}
+                        href={"/dashboard/profile"}
                         className="flex gap-4 items-center"
                       >
                         <User className="h-4 w-4" />
@@ -80,23 +95,14 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      {session.user.isAdmin ? (
-                        <Link
-                          href={"/dashboard/products"}
-                          className="flex gap-4 items-center"
-                        >
-                          <ShoppingBag className=" h-4 w-4" />
-                          <span>Products</span>
-                        </Link>
-                      ) : (
-                        <Link
-                          href={"/dashboard/my-orders"}
-                          className="flex gap-4 items-center"
-                        >
-                          <ShoppingBag className=" h-4 w-4" />
-                          <span>My Orders</span>
-                        </Link>
-                      )}
+                      <Link
+                        href={"/dashboard"}
+                        className="flex gap-4 items-center"
+                      >
+                        {/* <ShoppingBag className=" h-4 w-4" /> */}
+                        <LayoutDashboard className=" h-4 w-4" />
+                        <span>Dashboard</span>
+                      </Link>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />

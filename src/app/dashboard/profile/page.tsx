@@ -1,7 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import UserForm from "../../_components/UserForm";
+import UserForm from "../(user)/_components/UserForm";
 
 const ProfilePage = async () => {
   const session = await auth();

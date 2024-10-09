@@ -10,6 +10,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h2 className="text-xl font-bold mb-4">E-Gadget</h2>
+            <Link href="/">
+              <h1 className="text-2xl font-bold tracking-widest text-sky-500 uppercase">
+                E-Gadget
+              </h1>
+            </Link>
             <p className="text-gray-400 w-2/3">
               Your one-stop shop for the latest and greatest in electronic
               gadgets.
@@ -25,17 +30,26 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/products" className="text-gray-400 hover:text-white">
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
                   Shop
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/about-us" className="text-gray-400 hover:text-white">
+                <Link
+                  href="/about-us"
+                  className="text-gray-400 hover:text-white"
+                >
                   About Us
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="contact-us" className="text-gray-400 hover:text-white">
+                <Link
+                  href="contact-us"
+                  className="text-gray-400 hover:text-white"
+                >
                   Contact
                 </Link>
               </li>

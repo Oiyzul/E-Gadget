@@ -2,7 +2,12 @@
 
 import { FormInput } from "@/components";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -13,6 +18,15 @@ import { useForm } from "react-hook-form";
 type TInputs = {
   email: string;
   password: string;
+};
+
+const demoUser = {
+  email: "user@gmail.com",
+  password: "123456",
+};
+const demoAdmin = {
+  email: "admin@gmail.com",
+  password: "123456",
 };
 
 const SigninForm = () => {
@@ -52,7 +66,7 @@ const SigninForm = () => {
   };
 
   return (
-    <Card className="p-8 min-w-sm">
+    <Card className="p-8 bg-gray-200 min-w-[400px]">
       <CardHeader>
         <h1 className="text-2xl font-semibold mb-5">Sign in</h1>
         {params.get("error") && (
@@ -66,7 +80,7 @@ const SigninForm = () => {
           <div className="text-green-500">{params.get("success")}</div>
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="w-full">
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormInput
@@ -108,6 +122,22 @@ const SigninForm = () => {
           </Link>
         </div>
       </CardContent>
+      <CardFooter>
+        <div className="flex justify-between w-full">
+          <Button
+            variant="outline"
+            onClick={() => signIn("credentials", demoUser)}
+          >
+            Demo User
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => signIn("credentials", demoAdmin)}
+          >
+            Demo Admin
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

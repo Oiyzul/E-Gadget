@@ -6,20 +6,30 @@ import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 const DashboardNav = () => {
   const { data } = useSession();
   const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="h-20">
+    <nav className="h-16 bg-gray-900 dark:bg-inherit text-white flex items-center">
       <MaxWidthWrapper>
-        <div className="flex justify-end">
-          
+        <div className="flex items-center h-full justify-between">
+          <div>
+            <Link
+              href="/"
+              className="font-semiboldflex items-center gap-1"
+            >
+              {/* <ArrowBigLeft /> */}
+              Home
+            </Link>
+          </div>
           <div className="flex items-center gap-10">
             <p className="font-semibold">{data?.user?.name}</p>
 
             <Button
+              className="text-black dark:text-inherit"
               variant={"outline"}
               onClick={() => signOut({ callbackUrl: "/" })}
             >

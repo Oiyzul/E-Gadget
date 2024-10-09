@@ -53,7 +53,7 @@ const ProductsTable = () => {
   console.log(products);
   return (
     <MaxWidthWrapper>
-      <h1 className="text-2xl font-semibold mb-5">Your products</h1>
+      <h1 className="text-2xl font-semibold mb-5">All products</h1>
       <Table>
         <TableCaption>A list of your recent products.</TableCaption>
         <TableHeader>

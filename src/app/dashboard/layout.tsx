@@ -8,11 +8,13 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <div className="grid grid-cols-6">
-        <Sidebar />
-        <div className="col-span-5 p-4">
+      <div className="grid grid-cols-8">
+        <div className="col-span-2 md:col-span-1">
+          <Sidebar />
+        </div>
+        <div className="col-span-6 md:col-span-7">
           <DashboardNav />
-          <main>{children}</main>
+          <main className="p-4">{children}</main>
         </div>
       </div>
     </>

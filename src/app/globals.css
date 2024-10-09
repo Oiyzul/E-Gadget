@@ -61,7 +61,7 @@
   min-height: 70dvh;
   display: grid;
   /* place-content: center; */
-  margin-block: 100px;
+  margin-block: 50px;
 }
 
 @layer base {
