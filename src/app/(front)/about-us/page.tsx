@@ -94,8 +94,9 @@ const AboutUsPage = () => {
               We invite you to join our growing community of tech lovers. Follow
               us on social media for the latest updates, exclusive offers, and
               tech tips. At eGadget, we are more than just a store; we are a
-              community of people who share a love for technology. Thank you for
-              choosing eGadget. We look forward to serving you!
+              community of people who share a love for technology.
+              <br />
+              Thank you for choosing eGadget. We look forward to serving you!
             </p>
           </div>
         </div>
