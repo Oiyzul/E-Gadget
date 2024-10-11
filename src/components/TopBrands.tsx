@@ -33,7 +33,7 @@ const topBrands = [
 
 const TopBrands = () => {
   return (
-    <div className="mt-10">
+    <div className="hidden md:block mt-10 overflow-x-hidden">
       <div className="text-center mb-5">
         <motion.h1
           className="text-4xl md:text-5xl font-bold mb-2 text-gray-500 dark:text-white"
@@ -50,68 +50,68 @@ const TopBrands = () => {
           Choose from one of our top brands.
         </motion.p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="my-auto relative shadow-xl hover:shadow-2xl">
+      <div className="hidden md:grid md:grid-cols-3 gap-5">
+        <div className="my-auto relative shadow-xl hover:shadow-2xl rounded-md">
           <Link href={topBrands[0].link}>
-            <div className="relative w-[400px] h-[430px]">
+            <div className="relative w-full h-[410px] rounded-md">
               <Image
                 src={topBrands[0].image}
                 alt={topBrands[0].brand}
                 fill
-                className="object-contain"
+                className="object-cover rounded-md"
               />
             </div>
           </Link>
-          <p className="absolute -top-2 left-[30%] text-2xl font-semibold text-blue-800">
+          <p className="absolute top-8 left-1/2 -translate-x-1/2 text-2xl font-semibold text-white z-10 bg-black/30 px-3 py-1 rounded">
             {topBrands[0].brand}
           </p>
         </div>
 
-        <div className="flex flex-col gap-5">
-          <div className="relative shadow-xl hover:shadow-2xl">
+        <div className="h-[410px] flex flex-col gap-y-5 overflow-hidden">
+          <div className="relative shadow-xl hover:shadow-2xl rounded-md">
             <Link href={topBrands[1].link}>
-              <div className="relative w-[400px] h-[210px] mx-auto">
+              <div className="relative h-[200px] mx-auto">
                 <Image
                   src={topBrands[1].image}
                   alt={topBrands[1].brand}
                   fill
-                  className="object-contain"
+                  className="object-cover rounded-md"
                 />
               </div>
             </Link>
-            <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-sky-800">
+            <p className="absolute top-4 left-1/2 -translate-x-1/2 text-2xl font-semibold text-white bg-black/30 px-3 py-1 rounded">
               {topBrands[1].brand}
             </p>
           </div>
-          <div className="relative shadow-xl hover:shadow-2xl">
+          <div className="relative shadow-xl hover:shadow-2xl rounded-md">
             <Link href={topBrands[2].link}>
-              <div className="relative w-[400px] h-[210px] mx-auto">
+              <div className="relative h-[200px] mx-auto overflow-hidden">
                 <Image
                   src={topBrands[2].image}
                   alt={topBrands[2].brand}
                   fill
-                  className="object-contain"
+                  className="object-cover rounded-md"
                 />
               </div>
             </Link>
-            <p className="absolute -top-3 left-[28%] text-2xl font-semibold text-cyan-700">
+            <p className="absolute top-4 left-1/2 -translate-x-1/2 text-2xl font-semibold text-white bg-black/30 px-3 py-1 rounded">
               {topBrands[2].brand}
             </p>
           </div>
         </div>
 
-        <div className="my-auto relative shadow-xl hover:shadow-2xl">
+        <div className="my-auto relative shadow-xl hover:shadow-2xl rounded-md">
           <Link href={topBrands[3].link}>
-            <div className="relative w-[400px] h-[430px]">
+            <div className="relative lg:w-[400px] h-[410px]">
               <Image
                 src={topBrands[3].image}
                 alt={topBrands[3].brand}
                 fill
-                className="object-contain"
+                className="object-cover rounded-md"
               />
             </div>
           </Link>
-          <p className="absolute -top-4 left-[39%] text-2xl font-semibold text-blue-900">
+          <p className="absolute top-8 left-1/2 -translate-x-1/2 text-2xl font-semibold text-white bg-black/30 px-3 py-1 rounded">
             {topBrands[3].brand}
           </p>
         </div>

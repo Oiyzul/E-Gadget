@@ -87,7 +87,7 @@ const TextBanner = () => {
             >
               <m.h1
                 className={cn(
-                  "text-4xl font font-semibold md:text-5xl lg:text-7xl",
+                  "text-4xl font font-semibold md:text-4xl lg:text-7xl",
                   item.titleColor
                 )}
                 variants={carouselText}

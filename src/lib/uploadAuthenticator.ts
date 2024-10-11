@@ -1,7 +1,9 @@
 const uploadAuthenticator = async () => {
   try {
-    const response = await fetch(" https://egadgetbd.vercel.app/api/auth/upload");
-   
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/upload`
+    );
+
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(

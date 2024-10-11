@@ -16,6 +16,7 @@ const RecentSales = ({ data }: { data: TOrder[] }) => {
       <TableHeader>
         <TableRow>
           <TableHead>Image</TableHead>
+          <TableHead>Product</TableHead>
           <TableHead>Quantity</TableHead>
           <TableHead>SubTotal</TableHead>
           <TableHead>Tax</TableHead>
@@ -35,6 +36,7 @@ const RecentSales = ({ data }: { data: TOrder[] }) => {
                   height={50}
                 />
               </TableCell>
+              <TableCell>{order.items[0].name}</TableCell>
               <TableCell>
                 {order.items.reduce((a, c) => a + c.qty, 0)}
               </TableCell>

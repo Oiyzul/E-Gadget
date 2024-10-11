@@ -112,7 +112,17 @@ const ProductDetails = ({ product }: TProductProps) => {
         <h3 className="text-xl text-gray-500 dark:text-white font-semibold mb-3">
           Description
         </h3>
-        <p className="text-gray-700 dark:text-gray-200 mb-4">{description}</p>
+        <div>
+          {description.split("\n").map((desc, index) => (
+            <p
+              className="text-gray-700 dark:text-gray-200 mb-2"
+              key={`desc-${index}`}
+            >
+              {desc}
+            </p>
+          ))}
+        </div>
+
         <p className="text-gray-700 dark:text-gray-200 font-semibold mb-4">
           Availbale: {countInStock}
         </p>

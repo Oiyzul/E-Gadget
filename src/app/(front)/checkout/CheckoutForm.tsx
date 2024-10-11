@@ -26,14 +26,14 @@ const CheckoutForm = ({ emptyValue }: { emptyValue: boolean }) => {
   const onSubmit = async (data: TShippingAddress) => {
     dispath(saveShippingAddress(data));
   };
-  
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-        <h3 className="text-2xl font-semibold mb-5">
-          Your shipping Information
-        </h3>
+      <h3 className="text-2xl font-semibold mb-5">Your shipping Information</h3>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="grid md:grid-cols-2 xl:grid-cols-1 gap-4"
+      >
         <FormInput
           control={form.control}
           name={"customerName"}
@@ -68,7 +68,7 @@ const CheckoutForm = ({ emptyValue }: { emptyValue: boolean }) => {
           placeholder={"Country"}
         />
 
-        <div className="mt-8">
+        <div className="xl:mt-8">
           <Button type="submit" className="w-full bg-sky-500 hover:bg-sky-600">
             {emptyValue ? "Save & Continue" : "Update"}
           </Button>

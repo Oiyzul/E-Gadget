@@ -7,7 +7,7 @@ const userSchema = new Schema<TUser>(
     email: { type: String, required: true, unique: true },
     password: { type: String },
     isAdmin: { type: Boolean, default: false },
-    imgUrl: { type: String },
+    image: { type: String },
   },
   { timestamps: true }
 );

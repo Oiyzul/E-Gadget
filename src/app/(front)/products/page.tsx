@@ -125,34 +125,36 @@ const ProductsPage = async ({
 
   return (
     <MaxWidthWrapper>
-      <div className="grid md:grid-cols-5 md:gap-5">
-        <div>
-          <div className="text-xl pt-3">Category</div>
+      <div className="grid lg:grid-cols-5 lg:gap-5">
+        <div className="flex flex-wrap justify-between lg:flex-col lg:justify-start gap-10">
           <div>
-            <ul>
-              <li>
-                <Link
-                  className={`text-orange-500 ${
-                    "all" === category && "text-gray-500"
-                  }`}
-                  href={getFilterUrl({ c: "all" })}
-                >
-                  Any
-                </Link>
-              </li>
-              {categories.map((c: string) => (
-                <li key={c}>
+            <div className="text-xl pt-3">Category</div>
+            <div>
+              <ul>
+                <li>
                   <Link
-                    className={`link link-hover ${
-                      c === category && "link-primary"
+                    className={`text-orange-500 ${
+                      "all" === category && "text-gray-500"
                     }`}
-                    href={getFilterUrl({ c })}
+                    href={getFilterUrl({ c: "all" })}
                   >
-                    {c}
+                    Any
                   </Link>
                 </li>
-              ))}
-            </ul>
+                {categories.map((c: string) => (
+                  <li key={c}>
+                    <Link
+                      className={`link link-hover ${
+                        c === category && "link-primary"
+                      }`}
+                      href={getFilterUrl({ c })}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div>
             <div className="text-xl pt-3">Price</div>
@@ -236,7 +238,7 @@ const ProductsPage = async ({
             </ul>
           </div>
         </div>
-        <div className="md:col-span-4">
+        <div className="lg:col-span-4">
           <div className="flex flex-wrap items-center justify-between py-4">
             <div className="flex items-center">
               {products.length === 0 ? "No" : totalCount} Results
@@ -273,7 +275,7 @@ const ProductsPage = async ({
           </div>
 
           <div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3  ">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5 lg:gap-7 xl:gap-10  ">
               {products.map((product) => (
                 <ProductItemWithCart key={product._id} product={product} />
               ))}

@@ -1,16 +1,15 @@
-import Image from "next/image";
-import loadingImg from '@/assets/loading.gif'
+import { Skeleton } from "@/components/ui/skeleton";
+
 
 const LoadingPage = () => {
   return (
-    <div className="w-[90%] mx-auto">
-      <Image
-        src={loadingImg}
-        width={500}
-        height={500}
-        alt="loading"
-        className="w-96 mx-auto"
-      />
+    <div className="w-[90%] h-screen mx-auto my-10 flex flex-col space-y-4">
+      <Skeleton className="w-full h-16" />
+      <Skeleton className="w-full h-[70%] mt-2" />
+      <div className="space-y-2 flex items-center justify-between">
+        <Skeleton className="w-1/3 h-12" />
+        <Skeleton className="w-1/3 h-12" />
+      </div>
     </div>
   );
 };

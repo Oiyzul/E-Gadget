@@ -14,21 +14,20 @@ export const metadata: Metadata = {
 };
 
 const HomePage = async () => {
-  // const flashSaleProducts = await ProductServices.getFlashSales();
-  // const featuredProducts = await ProductServices.getFeatured();
-  // const latestProducts = await ProductServices.getLatest();
-  let flashSaleProducts,
-    featuredProducts,
-    latestProducts = [];
+  const flashSaleProducts = await ProductServices.getFlashSales();
+  const featuredProducts = await ProductServices.getFeatured();
+  const latestProducts = await ProductServices.getLatest();
+  // let flashSaleProducts,
+  //   featuredProducts,
+  //   latestProducts = [];
 
   return (
     <main>
       <Banner />
       <MaxWidthWrapper className="">
-        <section className="section">
+        <section className="mt-10">
           <AnimatedTitle title="Best Deals" link="/flash-sale" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
             {flashSaleProducts?.map((product: TProduct) => (
               <FlashSaleItem
                 key={`flashsale-${product._id}`}
@@ -43,8 +42,8 @@ const HomePage = async () => {
             title="Our Latest Collection"
             link="/products?sort=newest"
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
-            {latestProducts.length > 1 &&
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
+            {latestProducts.length > 0 &&
               latestProducts?.map((product: TProduct) => (
                 <ProductItem
                   key={`latest-${product._id}`}
@@ -57,7 +56,7 @@ const HomePage = async () => {
           </Button> */}
         </section>
 
-        <section className="section">
+        <section>
           <TopBrands />
         </section>
 
@@ -67,8 +66,8 @@ const HomePage = async () => {
             link="/products?sort=rating"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
-            {featuredProducts?.length > 1 &&
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
+            {featuredProducts?.length > 0 &&
               featuredProducts?.map((product: TProduct) => (
                 <ProductItem
                   key={`popular-${product._id}`}
@@ -78,9 +77,8 @@ const HomePage = async () => {
           </div>
         </section>
       </MaxWidthWrapper>
-      <BrandNames />
       <Facility />
-      {/* <BrandNames /> */}
+      <BrandNames />
     </main>
   );
 };

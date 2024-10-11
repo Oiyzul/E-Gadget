@@ -44,7 +44,7 @@ type TUser = {
   name: string;
   email: string;
   password?: string;
-  imgUrl?: string;
+  image?: string;
   isAdmin: boolean;
 };
 

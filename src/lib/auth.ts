@@ -95,7 +95,7 @@ export const config = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/auth/register", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/register`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export const config = {
               body: JSON.stringify({
                 name,
                 email,
-                imgUrl: image,
+                image,
               }),
             });
 

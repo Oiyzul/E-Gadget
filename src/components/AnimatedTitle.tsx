@@ -7,17 +7,17 @@ import { motion } from "framer-motion";
 
 const AnimatedTitle = ({ title, link }: { title: string; link: string }) => {
   return (
-    <div className="flex items-center justify-between border-b-2 h-max pb-2">
+    <div className="flex items-center justify-between border-b-2 h-max pb-3 mb-7">
       <motion.h1
-        className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white m-0 p-0"
+        className="text-4xl md:text-5xl font-bold text-gray-500 dark:text-white"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
       >
         {title}
       </motion.h1>
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
       >
         <Button
           asChild

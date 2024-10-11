@@ -9,7 +9,7 @@ import { TProduct } from "../../types";
 
 type TProps = {
   // form: UseFormReturn<TProduct, any, undefined>
-  field: ControllerRenderProps<TProduct, `images.${number}`>;
+  field?: ControllerRenderProps<TProduct, `images.${number}`>;
   isUploading: boolean;
   setIsUploading: Dispatch<SetStateAction<boolean>>;
   onSuccess: (res: IKUploadResponse) => void;

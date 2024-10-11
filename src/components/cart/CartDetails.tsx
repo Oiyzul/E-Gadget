@@ -37,7 +37,7 @@ const CartDetails = ({
           <Link href={"/"}>Go Shopping</Link>
         </>
       ) : (
-        <div className="flex flex-col md:flex-row md:gap-10 lg:gap-20">
+        <div className="flex flex-col md:flex-row gap-10 lg:gap-5 xl:gap-20">
           <div className="flex flex-grow flex-col gap-4">
             {items.map((item) => (
               <div
@@ -93,16 +93,16 @@ const CartDetails = ({
           </div>
 
           <div className="flex flex-col gap-2 border p-8 rounded-xl">
-            <p className="text-lg font-semibold text-gray-500">
+            <p className="text-lg font-semibold text-gray-500 dark:text-gray-300">
               Items Quantity: {totalQuantity}
             </p>
-            <p className="text-lg font-semibold text-gray-500">
+            <p className="text-lg font-semibold text-gray-500 dark:text-gray-300">
               Items Price: {itemsPrice}
             </p>
-            <p className="text-lg font-semibold text-gray-500">
+            <p className="text-lg font-semibold text-gray-500 dark:text-gray-300">
               Tax: {taxPrice}
             </p>
-            <p className="text-lg font-semibold text-gray-500">
+            <p className="text-lg font-semibold text-gray-500 dark:text-gray-300">
               Shipping: {shippingPrice}
             </p>
             <p className="text-lg font-semibold mb-4">

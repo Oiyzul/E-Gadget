@@ -9,10 +9,10 @@ const ContactUsPage = () => {
         <div className="flex-1">
           <div className="mb-10">
             <h2 className="text-2xl font-semibold mb-2">
-              We're here to help you
+              We&apos;re here to help you
             </h2>
             <p className="text-gray-500 dark-text-gray-300">
-              Have a question, comment, or brilliant idea you'd like to share?
+              Have a question, comment, or brilliant idea you&apos;d like to share?
               Send us a little note below - we love to hear from you and will
               always reply.
             </p>

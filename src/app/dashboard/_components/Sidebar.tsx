@@ -25,6 +25,9 @@ const Sidebar = () => {
             <li>
               <Link href="/dashboard/products/add-product">Add Product</Link>
             </li>
+            <li>
+              <Link href="/dashboard/profile">Profile</Link>
+            </li>
           </>
         ) : (
           <>
@@ -35,7 +38,7 @@ const Sidebar = () => {
               <Link href="/dashboard/my-orders">Orders</Link>
             </li>
             <li>
-              <Link href="/dashboard/user/profile">Profile</Link>
+              <Link href="/dashboard/profile">Profile</Link>
             </li>
           </>
         )}

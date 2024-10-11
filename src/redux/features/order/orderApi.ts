@@ -10,6 +10,7 @@ const orderApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["orders"],
     }),
     getAllOrders: builder.query({
       query: () => ({
@@ -35,7 +36,7 @@ const orderApi = baseApi.injectEndpoints({
       query: ({ id, data }) => ({
         url: `/orders?id=${id}`,
         method: "PUT",
-        body: data ,
+        body: data,
       }),
       invalidatesTags: ["orders"],
     }),

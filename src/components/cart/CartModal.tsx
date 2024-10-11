@@ -13,8 +13,8 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 
 type TProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isCartOpen: boolean;
+  setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const animation = {
@@ -28,7 +28,7 @@ const animation = {
     },
   },
 };
-const CartModal = ({ open, setOpen }: TProps) => {
+const CartModal = ({ isCartOpen, setIsCartOpen }: TProps) => {
   const { items, totalQuantity, totalPrice } = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
 
@@ -36,9 +36,9 @@ const CartModal = ({ open, setOpen }: TProps) => {
     <motion.div
       variants={animation}
       initial="initial"
-      animate={open ? "animate" : ""}
+      animate={isCartOpen ? "animate" : ""}
       exit="initial"
-      className="absolute top-12 right-0 h-[calc(100vh-50px)] w-[300px] bg-white dark:bg-black p-4 z-[1000] shadow-xl"
+      className="fixed top-12 right-0 h-[calc(100vh-50px)] w-[300px] bg-white dark:bg-black p-4 shadow-xl"
     >
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
       {items.length === 0 ? (
@@ -105,13 +105,18 @@ const CartModal = ({ open, setOpen }: TProps) => {
             <p className="text-lg font-semibold mb-4">
               Total Price: {totalPrice} BDT
             </p>
-
-            <Button asChild className="mr-2" onClick={() => setOpen(false)}>
-              <Link href={"/checkout"}>Checkout</Link>
-            </Button>
-            <Button asChild variant={"outline"} onClick={() => setOpen(false)}>
-              <Link href={"/products"}>Shop More</Link>
-            </Button>
+            <div className="flex gap-5">
+              <div onClick={() => setIsCartOpen(false)}>
+                <Button asChild className="mr-2">
+                  <Link href={"/checkout"}>Checkout</Link>
+                </Button>
+              </div>
+              <div onClick={() => setIsCartOpen(false)}>
+                <Button asChild variant={"outline"}>
+                  <Link href={"/products"}>Shop More</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       )}

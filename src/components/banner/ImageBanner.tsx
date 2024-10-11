@@ -15,7 +15,7 @@ const ImageBanner = () => {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="col-span-1 w-full mx-auto"
+      className="max-col-span-1 w-full mx-auto"
       // onMouseEnter={plugin.current.stop}
       // onMouseLeave={plugin.current.reset}
     >

@@ -6,9 +6,9 @@ import { TReview } from "../../../types";
 const Reviews = ({ productId }: { productId: string }) => {
   const { data: reviews = [], isLoading } = useGetAllReviewsQuery(productId);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="my-5">Loading...</div>;
 
-  if (!reviews?.data?.length) return <div>No reviews found.</div>;
+  if (!reviews?.data?.length) return <div className="my-5 font-semibold">No reviews found.</div>;
 
   return (
     <div className="my-10">

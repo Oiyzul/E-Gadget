@@ -1,9 +1,8 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: 'http://localhost:3000/api',
-  baseUrl: "https://egadgetbd.vercel.app/api",
-  
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL + '/api'
+
   //   credentials: "include",
   //   prepareHeaders: (headers, { getState }) => {
   //     const token = (getState() as RootState)?.auth?.token;
@@ -22,6 +21,6 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["products", "orders", "users", 'reviews'],
+  tagTypes: ["products", "orders", "users", "reviews"],
   endpoints: () => ({}),
 });

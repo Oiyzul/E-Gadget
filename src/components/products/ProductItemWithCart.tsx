@@ -23,18 +23,13 @@ const ProductItemWithCart = ({ product }: { product: TProduct }) => {
       className="w-full mx-auto bg-gray-900 text-white rounded-lg"
     >
       <div className="relative overflow-hidden rounded-lg shadow-lg group">
-        <div
-        //  className="relative w-[200px] h-[200px] md:w-[280px] md:h-[250px]"
-        >
+        <div className="relative w-full mx-auto h-[36vh] sm:h-[30vh] md:h-[30vh] lg:h-[30vh] xl:h-[36vh]">
           <Image
             src={images[0]}
             alt="Card Image"
-            // fill
-            layout="responsive"
-            width={300}
-            height={200}
-            className="w-full h-auto"
-            // className="object-cover pt-0.5"
+            fill
+            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw"
+            className="object-cover"
           />
         </div>
         <div className="bg-gray-900 w-fit py-2 rounded-full px-4 absolute top-4 left-4">
@@ -60,7 +55,7 @@ const ProductItemWithCart = ({ product }: { product: TProduct }) => {
             </button>
           </Link>
         </div>
-        <div className="w-full text-center mx-auto relative z-50 mb-2 flex items-center justify-center">
+        <div className="w-full text-center mx-auto relative z-10 mb-2 flex items-center justify-center">
           {countInStock !== 0 ? (
             <div>
               <AddToCart product={product} />

@@ -1,6 +1,6 @@
 const BrandNames = () => {
   return (
-    <div className="h-[120px] bg-gray-100 flex flex-col items-center gap-5 justify-center text-gray-900 italic">
+    <div className="h-[120px] bg-gray-100 dark:bg-black/70 flex flex-col items-center gap-5 justify-center text-gray-900 dark:text-white italic">
       <div className="whitespace-nowrap overflow-hidden w-full">
         <div className="inline-block animate-marquee">
           <span className="mx-10 text-4xl font-bold">Samsung</span>

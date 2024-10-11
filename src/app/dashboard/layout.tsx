@@ -14,7 +14,7 @@ export default function DashboardLayout({
         </div>
         <div className="col-span-6 md:col-span-7">
           <DashboardNav />
-          <main className="p-4">{children}</main>
+          <main className="">{children}</main>
         </div>
       </div>
     </>

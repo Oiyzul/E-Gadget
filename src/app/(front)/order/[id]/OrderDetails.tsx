@@ -106,16 +106,16 @@ const OrderDetails = ({ order }: { order: TOrder }) => {
               <CardContent>
                 <table className="">
                   <thead>
-                    <tr>
+                    <tr className="text-left">
                       <th>Item</th>
                       <th>Quantity</th>
                       <th>Price</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="">
                     {items.map((item: TOrderItem) => (
                       <tr key={item.product}>
-                        <td>
+                        <td className="max-w-sm">
                           <Link
                             href={`/product/${item.product}`}
                             className="flex items-center"
@@ -131,8 +131,8 @@ const OrderDetails = ({ order }: { order: TOrder }) => {
                             </span>
                           </Link>
                         </td>
-                        <td>{item.qty}</td>
-                        <td>${item.price}</td>
+                        <td className="w-[100px] px-4">{item.qty}</td>
+                        <td className="max-w-sm">{item.price} BDT</td>
                       </tr>
                     ))}
                   </tbody>

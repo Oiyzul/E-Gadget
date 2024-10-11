@@ -1,10 +1,11 @@
+import { cn } from "@/lib/utils";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
 type TProps = {
-  control: any,
+  control: any;
   name: string;
   label?: string;
   placeholder: string;
@@ -36,6 +37,7 @@ const FormInput = ({
   required = false,
   textArea = false,
   disabled = false,
+  className = "",
 }: TProps) => {
   return (
     <FormField
@@ -52,7 +54,7 @@ const FormInput = ({
                 required={required}
                 type={type}
                 disabled={disabled}
-                className="w-full outline-none border-b-2"
+                className={cn("w-full focus:outline-none", className)}
               />
             ) : (
               <Textarea

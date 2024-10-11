@@ -8,8 +8,10 @@ const NoSSRNav = dynamic(() => import("../../components/navbar/Navbar"), {
 export default function FrontLayout({ children }: TChildren) {
   return (
     <>
-      <NoSSRNav />
-      {children}
+      <div className="mb-16">
+        <NoSSRNav />
+      </div>
+      <main>{children}</main>
       <Footer />
     </>
   );

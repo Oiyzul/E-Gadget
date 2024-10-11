@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import AdminDashboard from "./_components/AdminDashboard";
 import UserDashboard from "./_components/UserDashboard";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 
 const Dashboard = async () => {
   const session = await auth();
@@ -11,7 +12,7 @@ const Dashboard = async () => {
   }
 
   return (
-    <div>{session.user.isAdmin ? <AdminDashboard /> : <UserDashboard />}</div>
+    <MaxWidthWrapper>{session.user.isAdmin ? <AdminDashboard /> : <UserDashboard />}</MaxWidthWrapper>
   );
 };
 
