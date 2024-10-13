@@ -27,7 +27,7 @@ const HomePage = async () => {
       <MaxWidthWrapper className="">
         <section className="mt-10">
           <AnimatedTitle title="Best Deals" link="/flash-sale" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-5 xl:gap-12">
             {flashSaleProducts?.map((product: TProduct) => (
               <FlashSaleItem
                 key={`flashsale-${product._id}`}
@@ -42,7 +42,7 @@ const HomePage = async () => {
             title="Our Latest Collection"
             link="/products?sort=newest"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-5 xl:gap-12">
             {latestProducts.length > 0 &&
               latestProducts?.map((product: TProduct) => (
                 <ProductItem
@@ -66,7 +66,7 @@ const HomePage = async () => {
             link="/products?sort=rating"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-10 xl:gap-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10 sm:gap-5 md:gap-2 lg:gap-5 xl:gap-12">
             {featuredProducts?.length > 0 &&
               featuredProducts?.map((product: TProduct) => (
                 <ProductItem

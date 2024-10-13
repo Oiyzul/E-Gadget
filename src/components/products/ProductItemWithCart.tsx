@@ -1,8 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { TProduct } from "../../../types";
 import Link from "next/link";
 import Rating from "../Rating";
 import AddToCart from "../cart/AddToCart";
+import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  addToWishlist,
+  selectWishlist,
+} from "@/redux/features/wishlist/wishlistSlice";
 
 const ProductItemWithCart = ({ product }: { product: TProduct }) => {
   const {
@@ -17,25 +26,37 @@ const ProductItemWithCart = ({ product }: { product: TProduct }) => {
     discount,
   } = product;
 
+  const dispatch = useAppDispatch();
+
+  const wishlist = useAppSelector(selectWishlist);
+  const isInWishlist = wishlist.some((item) => item._id === _id);
+
   return (
     <div
       key={`product-item-${_id}`}
-      className="w-full mx-auto bg-gray-900 text-white rounded-lg"
+      className="w-full mx-auto  text-white shadow-lg rounded-lg "
     >
-      <div className="relative overflow-hidden rounded-lg shadow-lg group">
-        <div className="relative w-full mx-auto h-[36vh] sm:h-[30vh] md:h-[30vh] lg:h-[30vh] xl:h-[36vh]">
+      <div className="relative overflow-hidden group">
+        <Heart
+          className={cn(
+            "absolute top-3 right-4 z-50",
+            isInWishlist ? "text-red-500 fill-red-500" : "text-black"
+          )}
+        />
+        <div className="relative max-w-full mx-auto w-[300px] h-[400px] sm:w-[300px] sm:h-[320px] md:w-[260px] md:h-[260px] lg:w-[300px] lg:h-[320px] xl:w-[350px] xl:h-[320px]">
           <Image
             src={images[0]}
             alt="Card Image"
             fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width:768px) 50vw, (max-width: 1024px) 33vw"
             className="object-cover"
           />
+
+          <div className="bg-gray-900 w-fit py-2 rounded-full px-4 absolute top-4 left-4">
+            <p className="text-white font-semibold">{discount || 0} % off</p>
+          </div>
         </div>
-        <div className="bg-gray-900 w-fit py-2 rounded-full px-4 absolute top-4 left-4">
-          <p className="text-white font-semibold">{discount || 0} % off</p>
-        </div>
-        <div className="flex flex-col items-center p-4">
+        <div className="bg-gray-900 flex flex-col items-center p-1 xl:px-4">
           <h3 className="text-center text-lg font-semibold">{name}</h3>
           <p>Model: {model}</p>
           <p>Price: {price} BDT</p>
@@ -54,18 +75,31 @@ const ProductItemWithCart = ({ product }: { product: TProduct }) => {
               See More
             </button>
           </Link>
+
+          <div
+            className="absolute bottom-12 left-1/2
+          -translate-x-1/2 text-white cursor-pointer"
+          >
+            <Heart
+              className={cn(
+                "w-10 h-10",
+                isInWishlist ? "text-red-500 fill-red-500" : "text-inherit"
+              )}
+              onClick={() => dispatch(addToWishlist(product))}
+            />
+          </div>
         </div>
-        <div className="w-full text-center mx-auto relative z-10 mb-2 flex items-center justify-center">
-          {countInStock !== 0 ? (
-            <div>
-              <AddToCart product={product} />
-            </div>
-          ) : (
-            <div className="text-red-500 font-bold">
-              <p>Out of Stock</p>
-            </div>
-          )}
-        </div>
+      </div>
+      <div className="bg-gray-900 w-full text-center mx-auto relative z-10 pb-2 flex items-center justify-center rounded-b-lg pt-2 xl:pt-3">
+        {countInStock !== 0 ? (
+          <div>
+            <AddToCart product={product} />
+          </div>
+        ) : (
+          <div className="text-red-500 font-bold">
+            <p>Out of Stock</p>
+          </div>
+        )}
       </div>
     </div>
   );

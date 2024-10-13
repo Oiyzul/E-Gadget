@@ -25,7 +25,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     name: product.name,
     price: product.price,
     image: product.images[0],
-    // color: product?.colors[0],
+    color: product?.colors[0],
     variant: product.variant,
     discount: product?.discount,
   } as TCartItem;
@@ -54,7 +54,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     </div>
   ) : (
     <button
-      className="bg-gray-950 dark:bg-white px-4 py-2 rounded-[10px] text-white dark:text-gray-950 shadow-xl"
+      className="min-w-[140px] bg-gray-950 dark:bg-white px-4 py-2 rounded-[10px] text-white dark:text-gray-950 shadow-xl"
       onClick={handleAddToCart}
     >
       Add to Cart

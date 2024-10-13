@@ -275,7 +275,7 @@ const ProductsPage = async ({
           </div>
 
           <div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5 lg:gap-7 xl:gap-10  ">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5 lg:gap-5 xl:gap-12">
               {products.map((product) => (
                 <ProductItemWithCart key={product._id} product={product} />
               ))}

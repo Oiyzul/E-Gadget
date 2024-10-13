@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { selectCart } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
 import {
+  Heart,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -32,6 +33,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Separator } from "../ui/separator";
+import { selectWishlist } from "@/redux/features/wishlist/wishlistSlice";
+import Wishlist from "../cart/Wishlist";
 
 const navLinks = [
   { link: "/", title: "Home" },
@@ -68,6 +72,7 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { items } = useAppSelector(selectCart);
   const { data: session } = useSession();
+  const wishlist = useAppSelector(selectWishlist);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,13 +103,13 @@ const Navbar = () => {
             {navLinks.map(({ link, title }) => (
               <li
                 key={title}
-                className="hover:text-gray-500 hover:dark:text-gray-300"
+                className="hover:text-gray-500 hover:dark:text-gray-300 border-b border-b-transparent hover:border-b-gray-500 transition-colors duration-300"
               >
                 <Link href={link}>{title}</Link>
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-end gap-2 md:gap-3 lg:gap-5 overflow-hidden">
+          <div className="flex items-center justify-end gap-3 md:gap-3 lg:gap-5 overflow-hidden">
             <div>
               {session?.user ? (
                 <DropdownMenu>
@@ -170,15 +175,34 @@ const Navbar = () => {
               )}
             </div>
 
+            <Separator orientation="vertical" className="w-0.5 h-5 md:hidden" />
+
+            <div className="relative group">
+              <div className="relative flex items-center gap-2.5 cursor-pointer">
+                <span className="hidden md:inline">Wishlist</span>
+                <Heart />
+
+                <div className="absolute -top-2 -right-2 bg-gray-900 p-2 rounded-full text-white w-4 h-4 flex items-center justify-center font-semibold">
+                  <span>{wishlist.length}</span>
+                  {/* {cart.reduce((a, c) => a + c.qty, 0)} */}
+                </div>
+              </div>
+              <div className="fixed hidden group-hover:block opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black z-[1000]">
+                <Wishlist />
+              </div>
+            </div>
+
+            <Separator orientation="vertical" className="w-0.5 h-5 md:hidden" />
+
             <div className="relative">
               <div
-                className="relative pr-4 flex items-center gap-2 cursor-pointer"
+                className="relative flex items-center gap-2 cursor-pointer"
                 onClick={() => setIsCartOpen((prev) => !prev)}
               >
                 <span className="hidden md:inline">Cart</span>
                 <ShoppingBag />
-                <div className="absolute -top-2 right-2 bg-gray-900 p-2 rounded-full text-white w-5 h-5 flex items-center justify-center font-semibold">
-                  <span>{items.length}</span>
+                <div className="absolute -top-2 -right-2 bg-gray-900 p-2 rounded-full text-white w-4 h-4 flex items-center justify-center font-semibold">
+                  <span>{items?.length}</span>
                   {/* {cart.reduce((a, c) => a + c.qty, 0)} */}
                 </div>
               </div>
@@ -190,6 +214,8 @@ const Navbar = () => {
                 />
               ) : null}
             </div>
+
+            <Separator orientation="vertical" className="w-0.5 h-5 md:hidden" />
 
             <div>
               {theme ? (
@@ -219,6 +245,8 @@ const Navbar = () => {
                 </div>
               ) : null}
             </div>
+
+            <Separator orientation="vertical" className="w-0.5 h-5 md:hidden" />
 
             <div className="md:hidden">
               <Menu

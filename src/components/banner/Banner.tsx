@@ -21,7 +21,7 @@ const Banner = () => {
       <div
         className={cn(
           "grid grid-cols-1 sm:grid-cols-2 mt-5",
-          theme === "light" ? "bg-gray-900" : "bg-black"
+          theme === "light" ? "bg-black" : "bg-black"
         )}
       >
         <div>

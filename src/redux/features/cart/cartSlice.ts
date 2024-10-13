@@ -68,6 +68,14 @@ const cartSlice = createSlice({
       const item = state.items.find(
         (item: TCartItem) => item.id === action.payload.id
       );
+
+      if (item && item.qty === 1) {
+      // item.qty = 0
+        state.items =  state.items.filter(
+          (item: TCartItem) => item.id !== action.payload.id
+        );
+      }
+
       if (item && item.qty > 1) {
         item.qty -= 1;
       }

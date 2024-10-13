@@ -3,14 +3,18 @@ import cartReducer from "./features/cart/cartSlice";
 import { baseApi } from "./api/baseApi";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import wishlistReducer from "./features/wishlist/wishlistSlice";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
+  wishlist: wishlistReducer,
   [baseApi.reducerPath]: baseApi.reducer,
 });
+
 const persistConfig = {
-  key: "cart",
+  key: "root",
   storage,
+  backlist: [baseApi.reducerPath]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

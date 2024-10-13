@@ -9,6 +9,10 @@ import { Separator } from "../../../../components/ui/separator";
 import AddToCart from "../../../../components/cart/AddToCart";
 import AddReview from "@/components/review/AddReview";
 import Reviews from "@/components/review/Reviews";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToWishlist, selectWishlist } from "@/redux/features/wishlist/wishlistSlice";
+import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const ProductDetails = ({ product }: TProductProps) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -26,6 +30,10 @@ const ProductDetails = ({ product }: TProductProps) => {
     numReviews,
     countInStock,
   } = product;
+
+  const dispatch = useAppDispatch();
+  const wishlist = useAppSelector(selectWishlist);
+  const isInWishlist = wishlist.some((item) => item._id === _id);
   return (
     <div>
       <div className="flex flex-col md:flex-row">
@@ -70,6 +78,13 @@ const ProductDetails = ({ product }: TProductProps) => {
               <Separator orientation="vertical" />
               <Rating rating={rating} />
               <span>({numReviews} reviews)</span>
+              <Heart
+              className={cn(
+                "w-7 h-7 cursor-pointer",
+                isInWishlist ? "text-red-500 fill-red-500" : "text-inherit"
+              )}
+              onClick={() => dispatch(addToWishlist(product))}
+            />
             </div>
           </div>
           <Separator className="my-5" />

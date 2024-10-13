@@ -31,7 +31,11 @@ const animation = {
 const CartModal = ({ isCartOpen, setIsCartOpen }: TProps) => {
   const { items, totalQuantity, totalPrice } = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
-
+  
+  const handleRemoveFromCart = (id:string) => {
+    dispatch(removeFromCart({ id }))
+    // setIsCartOpen(false);
+  }
   return (
     <motion.div
       variants={animation}
@@ -54,7 +58,7 @@ const CartModal = ({ isCartOpen, setIsCartOpen }: TProps) => {
                 <div className="flex items-center justify-between dark:text-black mb-1">
                   <h3 className="font-semibold">{item.name}</h3>
                   <button
-                    onClick={() => dispatch(removeFromCart({ id: item.id }))}
+                    onClick={() => handleRemoveFromCart(item.id)}
                     className=" text-red-500 rounded"
                   >
                     <CircleX />
